@@ -1,0 +1,11 @@
+<div class="page">
+  <div (click)="open = true; go()" class="door1" [class.open]="open">
+    <img src="../../../assets/images/landingPage/logo_left.svg" alt="" *ngIf="!open">
+    <img class="left" src="../../../assets/images/landingPage/left.svg" alt="" *ngIf="open">
+  </div>
+  <img class="mld-img" src="../../../assets/images/landingPage/logo_X.svg" alt="" *ngIf="!open" (click)="open = true; go()">
+  <div (click)="open = true; go()" class="door2" [class.open]="open">
+    <img src="../../../assets/images/landingPage/logo_right.svg" alt="" *ngIf="!open">
+    <img class="right" src="../../../assets/images/landingPage/right.svg" alt="" *ngIf="open">
+  </div>
+</div>

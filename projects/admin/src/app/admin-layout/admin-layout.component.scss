@@ -1,0 +1,22 @@
+@import "../../assets/variables";
+
+.header {
+  background-color: $blue;
+}
+
+.sidebar {
+  padding-top: 20px;
+
+  ul {
+    -webkit-padding-start: 20px;
+    list-style: none;
+    li {
+      background-color: $lightBlue;
+      margin: 5px;
+      padding: 0 5px;
+      &:hover {
+        background-color: $blue;
+      }
+    }
+  }
+}

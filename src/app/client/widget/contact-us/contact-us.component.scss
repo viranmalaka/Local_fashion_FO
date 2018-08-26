@@ -1,0 +1,41 @@
+@import "../../../../assets/theme";
+
+h2 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form {
+  input, textarea {
+    width: 238px;
+    padding: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 240px;
+    resize: none;
+    height: 100px;
+  }
+
+  .sox-btn {
+    width: 250px;
+    color: getVal('txt');
+    background: getVal('col2-d');
+  }
+}
+
+@media (max-width: 600px) {
+  input {
+    width: 210px!important;
+  }
+  textarea {
+    width: 212px!important;
+  }
+  .sox-btn {
+    width: 210px!important;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="header">{{'user_account.wish_list' | translate}}</div>
+<div class="container" fxLayout="row">
+  <div *ngFor="let i of items" class="item"
+       fxFlex="150px" fxFlex.xs="110px">
+    <img src="../../../assets/images/{{i.themeId}}/{{i.id}}_C_thumbnail.jpg"
+         alt="" routerLink="/items-list" [queryParams]="{view: i.id}">
+    <span class="item-price bg-1d">{{i.price | currencyChange}}</span>
+    <i class="material-icons add-wish-list fg-txt" (click)="remove(i)">close</i>
+    <p class="item-name">{{i.name}}</p>
+  </div>
+
+  <div *ngIf="items.length === 0" class="no-item">
+    {{'user_account.no_wishlist' | translate}} <br>
+    <button class="sox-btn btn fg-txt" routerLink="/items-list">{{'user_account.browse_socks' | translate}}</button>
+  </div>
+</div>

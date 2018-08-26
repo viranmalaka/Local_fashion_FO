@@ -1,0 +1,92 @@
+<div class="header">{{'user_account.personal_details' | translate}}</div>
+<div class="container">
+  <div class="section">
+    <div>
+      <form>
+        <div class="field">
+          <label>{{'user_account.username' | translate}}: </label>
+          <input [(ngModel)]="userDetails.username" name="username"
+                 type="text" placeholder="{{'user_account.username' | translate}}" readonly>
+        </div>
+        <div class="field">
+          <label>{{'user_account.fullname' | translate}}: </label>
+          <input type="text" placeholder="{{'user_account.fullname' | translate}}"
+                 [(ngModel)]="userDetails.fullname" name="fullname">
+        </div>
+        <div class="field">
+          <label>{{'user_account.gender' | translate}}: </label>
+          <select type="text" [(ngModel)]="userDetails.gender" name="gender">
+            <option [value]="null">{{'user_account.select' | translate}}</option>
+            <option [value]="0">{{'user_account.male' | translate}}</option>
+            <option [value]="1">{{'user_account.female' | translate}}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>{{'user_account.title' | translate}}: </label>
+          <select type="text" [(ngModel)]="userDetails.title" name="title">
+            <option [value]="null">{{'user_account.select' | translate}}</option>
+            <option [value]="'miss'">{{'user_account.miss' | translate}}</option>
+            <option [value]="'ms'">{{'user_account.ms' | translate}}</option>
+            <option [value]="'mrs'">{{'user_account.mrs' | translate}}</option>
+            <option [value]="'mr'">{{'user_account.mr' | translate}}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label fxHide.xs>{{'user_account.contact_number' | translate}}: </label>
+          <label fxHide.gt-xs>Tel: </label>
+          <input type="tel" [(ngModel)]="userDetails.contact" name="telephone" placeholder="{{'user_account.contact_number' | translate}}">
+        </div>
+
+        <div class="field">
+          <label fxHide.xs>{{'user_account.default_sock_size' | translate}}: </label>
+          <label fxHide.gt-xs>Size: </label>
+          <select type="text" [(ngModel)]="userDetails.sockSize" name="soxsize">
+            <option [value]="null">{{'user_account.select' | translate}}</option>
+            <option [value]="1">36-40</option>
+            <option [value]="2">41-46</option>
+          </select>
+        </div>
+
+        <button class="update-button" (click)="updateData()">{{'user_account.update_my_details' | translate}}</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="section">
+    <div>
+      <form>
+        <div class="field">
+          <label>{{'user_account.email' | translate}}: </label>
+          <input type="email" name="email" placeholder="{{'user_account.email' | translate}}" [(ngModel)]="userDetails.email">
+        </div>
+        <button class="update-button" (click)="changeEmail()">{{'user_account.change_email' | translate}}</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="section" [class.inactive]="!showUpdatePassword">
+    <div>
+      <div class="field">
+        <label fxHide.xs>{{'user_account.current' | translate}} {{'user_account.password' | translate}}: </label>
+        <label fxHide.gt-xs>Current: </label>
+        <input type="password" placeholder="{{'user_account.current' | translate}} {{'user_account.password' | translate}}"
+        [(ngModel)]="passwords.current" name="current"
+        >
+      </div>
+      <div class="field">
+        <label fxHide.gt-xs>{{'user_account.current' | translate}}: </label>
+        <label fxHide.xs>{{'user_account.new' | translate}} {{'user_account.password' | translate}}: </label>
+        <input type="password" placeholder="{{'user_account.new' | translate}} {{'user_account.password' | translate}}"
+               [(ngModel)]="passwords.new" name="new">
+      </div>
+      <div class="field">
+        <label>{{'user_account.confirm' | translate}}: </label>
+        <input type="password" placeholder="{{'user_account.confirm' | translate}}"
+               [(ngModel)]="passwords.confirm" name="confirm">
+      </div>
+      <button class="update-button" style="background: #abafb2" (click)="updatePassword()">{{'user_account.change_password' | translate}}</button>
+    </div>
+  </div>
+</div>

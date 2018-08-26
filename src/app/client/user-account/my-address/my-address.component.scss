@@ -1,0 +1,125 @@
+@import "../../../../assets/theme";
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.no-address {
+  font-size: 25px;
+  text-align: center;
+  margin: 0 auto;
+}
+.container {
+  max-width: 650px;
+  text-align: center;
+}
+
+.list-item {
+  border: solid 1px getVal('col1-d');
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  text-align: start;
+
+  .name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .button {
+    position: absolute;
+    background-color: getVal('col2-d');
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+
+    &.delete-btn {
+      background-color: getVal('col1-d');
+      right: 100px;
+    }
+  }
+}
+
+  .modal {
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.2s;
+    animation-name: animatetop;
+    animation-duration: 0.2s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.19);
+    .modal-content {
+      -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      width: 300px;
+      height: 510px;
+      margin: 50px auto;
+      overflow-y: auto;
+      text-align: center;
+      .mod-header {
+        margin-top: 15px;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .field {
+        margin: 5px;
+        select {
+          color: getVal('txt');
+          width: 209px;
+          height: 34px;
+          background-color: white;
+        }
+        input {
+          width: 200px;
+          padding-left: 4px;
+          color: getVal('txt');
+        }
+        .inline-checkbox {
+          padding: 5px;
+        }
+        .birthday {
+          width: 64px;
+        }
+      }
+    }
+
+    .close-btn {
+      position: relative;
+      top: 67px;
+      left: calc((100% - 300px) / 2 + 287px);
+      background: white;
+      border-radius: 20px;
+      color: #c00000;
+    }
+  }
+
+.update-button {
+  border: none;
+  margin-top: 15px;
+  background: getVal('col2-l');
+  color: getVal('txt');
+  font-weight: bold;
+  font-size: 16px;
+  width: 209px;
+  //margin-left: 210px;
+  padding: 9px;
+}
+
+@media (max-width: 600px) {
+  .list-item {
+    .button {
+      &.delete-btn {
+        right: 10px;
+        bottom: 53px;
+        width: 61px;
+      }
+    }
+  }
+}

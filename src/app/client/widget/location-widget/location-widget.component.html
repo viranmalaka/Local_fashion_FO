@@ -1,0 +1,8 @@
+<div fxLayout="column">
+  <h2 class="bg-1d">{{'layout.nearest_stores' | translate}}</h2>
+  <div class="buttons br-1l bg-2l-h" fxLayout="row" routerLink="/stores" [queryParams]="{id : x.id}"
+       *ngFor="let x of lst">
+    <div fxFlex fxFlexAlign="start">{{x.name}}</div>
+    <!--<div fxFlex fxFlexAlign="end" style="text-align:end;">1 KM</div>-->
+  </div>
+</div>

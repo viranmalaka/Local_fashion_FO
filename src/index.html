@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Soxplay</title>
+  <base href="/">
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#abafb2">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#abafb2">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#abafb2">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- <meta name="viewport" content="width=device-width, user-scalable=no" /> -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk5WAnUcL7EAwKrogcPjanKaE6ZRgbvhQ"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.3/aos.css" />
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript">
+    var stripe = Stripe('pk_test_6gmWkZRbA6ueQLvpLuhiKp05'); // use your test publishable key
+    var elements = stripe.elements();
+  </script>
+
+  <script type="text/javascript">
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<div class="buttons" fxLayout="row">
+  <div class="l-btn bg-1d fg-2l-h" fxFlex fxFlexAlign="start" (click)="login()">{{'layout.login'| translate}}</div>
+  <div class="r-btn bg-1d fg-2l-h" fxFlex fxFlexAlign="end" routerLink="/user-login" [queryParams]="{signup: true}" >SIGN UP</div>
+</div>
+<div class="input-group">
+  <input type="text" placeholder="{{'layout.username'| translate}} / {{'layout.email' | translate}}" [(ngModel)]="data.username">
+</div>
+<div class="input-group">
+  <input type="password" placeholder="{{'layout.password' | translate}}" [(ngModel)]="data.password">
+</div>
+

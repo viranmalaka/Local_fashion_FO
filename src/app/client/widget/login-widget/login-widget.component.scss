@@ -1,0 +1,39 @@
+@import "../../../../assets/theme";
+
+.buttons {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  .r-btn {
+    text-align: right;
+  }
+}
+
+div {
+  @extend .bg-1l;
+  //background: $bg2-col;
+}
+
+.input-group {
+  position: relative;
+  margin: 5px 0;
+  width: 225px;
+  input {
+    padding-left: 5px;
+    width: 230px;
+  }
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #8c8586;
+  //font-weight: bold;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: #8c8586;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: #8c8586;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: #8c8586;
+}

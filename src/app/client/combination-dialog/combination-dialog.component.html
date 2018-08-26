@@ -1,0 +1,65 @@
+<div class="modal" [ngStyle]="{'display': (show ? 'block' : 'none')}" #modalBackground  (click)="backgroundClose($event)">
+  <div class="nav-btn left" (click)="navCombination(false)"><i class="fa fa-angle-left"></i></div>
+  <div class="modal-content" fxLayout="row" fxLayout.lt-md="column">
+    <i class="material-icons close-btn" (click)="show=false">close</i>
+    <div fxFlex.gt-sm="66%" *ngIf="images.length > 0">
+      <!--<ngx-image-viewer fxHide.lt-md [src]="images" [(index)]="imageIndex"></ngx-image-viewer>-->
+
+      <div class="tile" (mouseover)="imgScale=2.5" (mouseleave)="imgScale=1">
+        <div class="photo" #photoRef
+             [ngStyle]="{'background-image': 'url(' + images[imageIndex] + ')',
+           'transform': 'scale(' + imgScale + ')'}"
+        ></div>
+      </div>
+      <div class="thumbnails" fxHide.lt-md>
+        <img src="{{x}}" alt="" class="photo-thumbnail"
+             (click)="imageIndex = i" *ngFor="let x of images; let i = index">
+      </div>
+
+      <div class="pinch-zoom" fxHide.gt-sm>
+        <pinch-zoom>
+          <img [src]="images[imageIndex]" alt="" id="mbl_img">
+        </pinch-zoom>
+        <div class="thumbnails" fxHide.gt-md>
+          <img src="{{x}}" alt="" class="photo-thumbnail"
+               (click)="imageIndex = i" *ngFor="let x of images; let i = index">
+        </div>
+      </div>
+    </div>
+    <div fxFlex.gt-sm="33%" style="padding: 10px">
+      <div class="reviews" *ngIf="commentLoaded">
+        <h4>Comments</h4>
+        <div class="comment-list">
+          <div class="comment" *ngFor="let x of fbComments">
+            <strong>{{x.from.name}}</strong>
+            <i>{{x['created_time'] | date:'MMM d, y, h:mm a'}} <br></i>
+            <span class="fg-txt">{{x.message}}</span>
+          </div>
+          <div class="no-comments" *ngIf="fbComments.length === 0">No review yet. Be the first one to add review.</div>
+        </div>
+
+        <div class="comment">
+          <div class="comment-input" fxLayout="row" fxLayoutGap="5px">
+            <textarea fxFlex [(ngModel)]="comment" placeholder="Add a comment.."></textarea>
+            <button fxFlex="40px" class="sox-btn" (click)="postComment()"><i class="material-icons">send</i></button>
+            <div class="msg" *ngIf="msgShow">
+              <span [innerHTML]="msg"></span>
+            </div>
+          </div>
+          <div class="share">
+            <div class="social-list">
+              <a class="go-to-link fg-2l-h" target="_blank" href="https://www.facebook.com/{{details.fb_id}}">go to our post</a>
+              <br>share
+              <a href="fb-messenger://share/?link=https%3A%2F%2Fwww.facebook.com%2F{{details.fb_id}}&text=Soxlpay" class="social-icons"><i class="fab fa-facebook-messenger"></i></a>
+              <a href="" class="social-icons"><i class="fab fa-instagram"></i></a>
+              <a href="whatsapp://send?https%3A%2F%2Fwww.facebook.com%2F{{details.fb_id}}&text=Soxlpay"
+                 data-action="share/whatsapp/share" class="social-icons">
+                <i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btn right" (click)="navCombination(true)"><i class="fa fa-angle-right"></i></div>
+</div>

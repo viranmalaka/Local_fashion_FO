@@ -1,0 +1,12 @@
+<div class="popup" (click)="loggedIn ? goToMyAccount() : trigger() && !disable"
+     [class.mbl]="mbl">
+  <i class="material-icons" [class.fg-2d]="!mbl && showPop"
+     *ngIf="!loginPop || !loggedInUser['img']">{{icon}}</i>
+  <img src="https://graph.facebook.com/v3.0/{{loggedInUser['img']}}/picture"
+       alt="" *ngIf="loginPop && loggedInUser['img']" class="prof-pic"
+       routerLink="/auth/account">
+  <div class="popup-content show bg-1d" id="myPopup" *ngIf="showPop" [class.login]="loginPop"
+       [class.chat]="chat" >
+    <ng-content></ng-content>
+  </div>
+</div>

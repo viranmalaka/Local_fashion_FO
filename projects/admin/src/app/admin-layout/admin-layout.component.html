@@ -1,0 +1,20 @@
+<div fxLayout="column">
+  <div fxFlex="50px" class="header">
+    <a href=""><img src="../../assets/logo_small.svg" alt="" height="50px"></a>
+  </div>
+  <div fxFlex="auto" fxLayout="row">
+    <div fxFlex="250px" class="sidebar">
+      <ul>
+        <li routerLink="themes">Theme</li>
+        <li routerLink="items">Items</li>
+        <li routerLink="combinations">Combinations</li>
+        <br>
+        <li>Users</li>
+      </ul>
+    </div>
+    <div fxFlex="auto" class="container">
+      <div class="title">Something</div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

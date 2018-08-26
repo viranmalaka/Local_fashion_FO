@@ -1,0 +1,6 @@
+<select [(ngModel)]="country" (change)="updateFn($event)" [disabled]="disabled">
+  <option [value]="null">Select Country</option>
+  <option [value]="'IT'">Italy</option>
+  <option [value]="'NL'">Netherlands</option>
+  <option [value]="'GB'">United Kingdom</option>
+</select>

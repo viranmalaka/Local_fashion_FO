@@ -1,0 +1,293 @@
+@import "../../../assets/theme";
+
+// modal
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 750px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+
+  div {
+    div.nav-button {
+      text-align: center;
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  //color: $act-col;
+  background: white;
+  border-radius: 20px;
+  width: 12px;
+  height: 15px;
+  padding: 4px 8px 5px 5px;
+  z-index: 2;
+}
+
+.sox-btn {
+  //background: $bg2-col;
+  padding: 12px;
+}
+
+.img {
+  margin: 10px;
+  height: 500px;
+  .tile {
+    position: relative;
+    float: left;
+    left: 10px;
+    top: 10px;
+    width: 95%;
+    height: 85%;
+    overflow: hidden;
+  }
+  .thumbnails {
+    display: inline-block;
+    width: 85%;
+    text-align: center;
+    top: 24px;
+    position: relative;
+    left: 30px;
+  }
+  .photo-thumbnail {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 2px solid getVal('col1-d');
+    &:hover {
+      border-color: getVal('col2-l');
+    }
+  }
+  .photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat center;
+    background-size: cover;
+    -webkit-transition: -webkit-transform .5s ease-out;
+    transition: -webkit-transform .5s ease-out;
+    -o-transition: transform .5s ease-out;
+    transition: transform .5s ease-out;
+    transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: -12px;
+  right: -7px;
+  color: #de414d;
+  background: white;
+  border-radius: 20px;
+  width: 12px;
+  height: 15px;
+  padding: 4px 8px 5px 5px;
+  font-size: 16px;
+}
+
+.board {
+  margin: 30px 0 0 0;
+  overflow-y: scroll;
+  height: 500px;
+  h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    .discount {
+      text-decoration: line-through black;
+      font-size: 15px;
+    }
+  }
+  button.sox-btn.action {
+    width: 130px;
+    margin: 4px 2px;
+  }
+
+  .qty {
+    input {
+      font-size: 22px;
+      -moz-appearance:textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+      }
+    }
+  }
+
+  .size-label {
+    margin: 4px 8px 4px 2px;
+    padding: 11px 12px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  button.sox-btn.size {
+    margin: 4px 0;
+    width: 66px;
+  }
+
+  p.description {
+    font-size: 15px;
+    margin: 10px 10px 10px 0;
+  }
+  .related-items {
+    margin-top: 30px;
+    position: relative;
+    .theme {
+      img {
+        width: 75px;
+        border: 2px solid getVal('col1-d');
+        &:hover {
+          border-color: getVal('col2-l');
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+}
+
+.qty {
+  margin: 2px;
+  display: table;
+  //background: $bg2-col;
+  padding: 5px;
+  font-weight: bold;
+  width: 278px;
+  span {
+    padding-top: 8px;
+  }
+  i {
+    padding-top: 4px;
+  }
+  input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    height: 25px;
+    //background-color: $bg-col;
+    //color: $txt-col;
+  }
+}
+
+@media (max-width: 960px) {
+  .modal {
+    padding-top: 40px;
+  }
+
+  .board {
+    margin: 30px 10px 10px 10px;
+    height: auto;
+    text-align: center;
+    .related-items {
+      margin-top: 30px;
+      position: relative;
+      .theme {
+        img {
+          width: 75px;
+        }
+      }
+      img {
+        width: 75px;
+      }
+    }
+    .qty {
+      margin: 2px auto;
+      width: 288px;
+      input {
+        font-size: 22px;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          /* display: none; <- Crashes Chrome on hover */
+          -webkit-appearance: none;
+          margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+      }
+      i.material-icons {
+        font-size: 24px;
+      }
+    }
+    button.sox-btn.action {
+      width: 139px;
+    }
+    .size-label {
+      margin: 4px 8px 4px 0;
+      padding: 11px 13px;
+    }
+    button.sox-btn.size {
+      width: 70px;
+    }
+  }
+  .thumbnails {
+    display: inline-block;
+    width: 85%;
+    text-align: center;
+    top: 24px;
+    position: relative;
+    left: 30px;
+  }
+  .photo-thumbnail {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 2px solid getVal('col1-d');
+  }
+
+  .modal-content {
+    width: 90%;
+    height: 90%;
+    .scroll-pane {
+      overflow: auto;
+      height: 95%;
+      i {
+        font-size: 12px;
+      }
+      .instruction {
+        padding-left: 5%;
+      }
+    }
+    .mbl_img {
+      width: 90%;
+      margin: 5% 5% 0 5%;
+    }
+  }
+  .mbl-only {
+    padding: 20px;
+    h1 {
+      font-size: 20px;
+    }
+  }
+}

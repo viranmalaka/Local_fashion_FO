@@ -1,0 +1,22 @@
+<div fxLayout="row">
+  <div class="form" style="padding: 10px">
+    <form class="form" style="display: block;">
+      <input type="text" class="form-control" placeholder="item id 1" name="id_1" [(ngModel)]="combDetails.id_1">
+      <input type="text" class="form-control" placeholder="item id 2" name="id_2" [(ngModel)]="combDetails.id_2">
+      <input type="text" class="form-control" placeholder="fb post id" name="fb" [(ngModel)]="combDetails.fb_id">
+      <input type="text" class="form-control" placeholder="insta post id" name="insta" [(ngModel)]="combDetails.insta_id">
+      <button class="btn btn-primary" style="margin: 2px" (click)="addCombinationDetails()" *ngIf="selected.length == 0">Add</button>
+      <button class="btn btn-primary" style="margin: 2px" (click)="editCombDetails()" *ngIf="selected.length != 0">Edit</button>
+      <button class="btn btn-danger" style="margin: 2px" (click)="deleteCombDetials()" *ngIf="selected.length != 0">Delete</button>
+    </form>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <div class="table">
+    <ngx-datatable class="material"
+                   [rows]="rows" [columnMode]="'force'" [columns]="columns"
+                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5"
+                   [selected]="selected" [selectionType]="'single'" (select)="selectDetails($event)">
+    </ngx-datatable>
+  </div>
+</div>

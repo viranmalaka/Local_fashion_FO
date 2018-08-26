@@ -1,0 +1,53 @@
+@import "../../../../assets/theme";
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order-list {
+  max-width: 650px;
+  .item {
+    padding: 10px;
+    border: #8c8586 solid 1px;
+    border-radius: 3px;
+    text-align: center;
+    margin-bottom: 3px;
+    //overflow: auto;?
+    .collaps {
+      font-size: 16px;
+      background-color: getVal('col1-d');
+      margin-left: 10px;
+      border-radius: 10px;
+    }
+  }
+}
+
+.images {
+  margin-top: 5px;
+  border-top: solid 3px getVal('col1-d');
+  padding-top: 5px;
+  overflow-x: auto;
+  width: 100%;
+  margin-bottom: 10px;
+  .sox-list {
+    a {
+      img{
+        height: 75px;
+      }
+    }
+  }
+}
+
+.more-details {
+  .date {
+    float: left;
+  }
+}
+
+.no-item {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 25px;
+}

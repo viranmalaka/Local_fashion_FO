@@ -1,0 +1,38 @@
+<div class="header">{{'user_account.my_order' | translate}}</div>
+<div class="order-list" fxLayout="column" [style.max-width]="orderList.length === 0 ? '100%' : '650px'">
+  <div *ngFor="let o of orderList; let idx = index" class="item"
+       [class.active]="idx === activeItem" (click)="activeMe(idx)"
+       [fxFlex]="activeItem === idx ? '200px' :'40px'">
+    <div fxLayout="row">
+      <div fxFlexAlign="start" fxFlex.xs="auto" fxFlex="150px">{{'user_account.status' | translate}}: {{o.status}}</div>
+      <div fxHide.lt-sm fxFlex="auto">{{'user_account.cost' | translate}}: ${{o.finalCost}}</div>
+      <div fxHide.lt-md fxFlex="auto">{{'user_account.tracking_id' | translate}}: {{o.trackingId === '' ? 'N/A' : o.trackingId}}</div>
+      <div class="collaps material-icons" fxFlexAlign="end">keyboard_arrow_{{ o.id !== activeItem ? 'left' : 'down' }}</div>
+      <!--<span fxHide.gt-sm>Cost: ${{o.finalCost}}</span>-->
+
+    </div>
+    <div fxFlex="row" *ngIf="idx === activeItem">
+      <div fxFlex class="images" fxLayout="row" *ngIf="o.orderDetails">
+        <div *ngFor="let i of o.orderDetails" class="sox-list" fxFlex="100px">
+          <a routerLink="/items-list" [queryParams]="{view: i.item?.id}">
+            <!--<img  src="../../../../assets/images/{{i.item?.themeId}}/{{i.item?.id}}_A_thumbnail.jpg" alt="">-->
+            <img  src="../../../../assets/images/{{
+            i.fullpack ? i.fullpack + '/fullpack' :
+            i.item?.themeId + '/' + i.item?.id + (i.pair ? '_C' : '_A')
+            }}_thumbnail.jpg" alt="">
+            <p style="font-size: 11px">{{i.item?.name}}</p>
+          </a>
+        </div>
+      </div>
+      <div class="more-details" fxLayout="row" fxLayout.xs="column">
+        <span class="date" fxFlex>{{'user_account.date' | translate}}: {{o.addedDate | date:'dd/mm/yyyy'}}</span>
+        <span fxFlex>{{'user_account.shipping_cost' | translate}}: ${{o.shippingCost}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="orderList.length === 0" class="no-item">
+    {{'user_account.no_order' | translate}} <br>
+    <button class="sox-btn btn fg-txt" routerLink="/items-list">{{'user_account.browse_socks' | translate}}</button>
+  </div>
+</div>

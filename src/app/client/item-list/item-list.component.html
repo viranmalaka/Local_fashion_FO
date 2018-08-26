@@ -1,0 +1,210 @@
+<div fxFlex="auto" fxLayout="column" style="height: 100%">
+  <!--pricing tags area-->
+  <div class="price-tags" fxFlex="40px" *ngIf="!maxCombView">
+    <div class="tag-conatiner">
+      <div class="tag change-price bg-2l fg-txt" [class.animate]="priceAnimation"
+      *ngIf="listMode === 'f'">Buy SOX 6, its <strong>{{23.9 | currencyChange}}</strong> only!
+      </div>
+      <div class="tag change-price bg-2l fg-txt" [class.animate]="priceAnimation"
+      *ngIf="listMode === 'p'">Buy SOX 3, its <strong>{{11.95 | currencyChange}}</strong> only!
+      </div>
+
+      <div class="tag change-price bg-2l fg-txt" [class.animate]="priceAnimation"
+      *ngIf="listMode === 's' && getTotalCount() === 0">Buy one Sox, its <strong>{{4.95 | currencyChange}}</strong> only!
+      </div>
+      <div class="tag change-price bg-2l fg-txt" [class.animate]="priceAnimation"
+      *ngIf="listMode === 's' && getTotalCount() > 0 && getTotalCount() < 6">Add another Sox, its <strong>{{4.95 | currencyChange}}</strong> only!
+      </div>
+      <div class="tag change-price bg-2l fg-txt" [class.animate]="priceAnimation"
+      *ngIf="listMode === 's' && getTotalCount() > 5">Keep adding, its <strong>{{4.95 | currencyChange}}</strong> only per sock!
+      </div>
+      <div class="tag total-price bg-2l fg-txt">TOTAL:
+        <strong *ngIf="totalCost === 0"> 0</strong>
+        <strong *ngIf="totalCost !== 0"> {{totalCost | currencyChange}}</strong>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="column" fxFlex="auto" class="list-container" [fxHide]="maxCombView"
+       (click)="closeSidePane($event)">
+
+
+    <div *ngIf="listMode === 's'">
+      <div *ngFor="let t of themeList" class="theme-list">
+
+        <!--Theme Name-->
+        <div class="theme-name bg-2l" fxFlex>{{t.name}}</div>
+
+        <!--Repeative Items-->
+        <div fxFlex fxLayout="row" class="items" [class.cart-view]="cart">
+          <div *ngFor="let i of t.item" class="item" fxFlex="170px" fxFlex.sm="150px"
+               fxFlex.xs="80px" [class.active]="i.selected">
+
+            <!--normal-->
+            <img src="../../../assets/images/{{t.id}}/{{i.id}}_{{i.category === 'sox-1' ? 'C' : 'A'}}_thumbnail.jpg"
+                 alt="" (click)="selectItem(i)" (dblclick)="view(i)"
+                 *ngIf="i.category !== 'sox-6' && i.category !== 'comb'">
+
+            <i class="material-icons active-check fg-2d">check</i>
+            <i class="material-icons add-wish-list" (click)="addToWishList(i)"
+               [class.fg-2d]="userWishList[i.id]" [class.fg-txt]="!userWishList[i.id]"
+            >favorite</i>
+            <i class="material-icons view fg-txt" [class.safari]="localSafari" (click)="view(i)">zoom_in</i>
+            <p class="item-name">{{i.name}}</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="listMode !== 's'">
+      <div class="theme-list">
+        <!--Repetitive Items-->
+        <div fxFlex class="items" [class.cart-view]="cart" [fxLayoutAlign]="listMode === 'p' ? 'row' : 'column'">
+
+          <div *ngFor="let t of themeList" fxLayoutAlign="" style="flex-wrap: wrap;">
+            <div *ngFor="let i of t.item">
+              <div class="item" fxFlex="170px" fxFlex.sm="150px" *ngIf="i.category === 'sox-6'"
+                   fxFlex.xs="80px" [class.active]="i.selected">
+                <img src="../../../assets/images/{{t.id}}/fullpack_thumbnail.jpg"
+                     alt="" (click)="selectItem(i)" (dblclick)="view(i)">
+
+                <i class="material-icons active-check fg-2d">check</i>
+                <i class="material-icons add-wish-list" (click)="addToWishList(i)"
+                   [class.fg-2d]="userWishList[i.id]" [class.fg-txt]="!userWishList[i.id]"
+                >favorite</i>
+                <i class="material-icons view fg-txt" [class.safari]="localSafari" (click)="view(i)">zoom_in</i>
+                <p class="item-name">{{i.name}}</p>
+              </div>
+
+              <div class="item" fxFlex="170px" fxFlex.sm="150px" *ngIf="i.category === 'sox-3'"
+                   fxFlex.xs="80px" [class.active]="i.selected">
+                <img src="../../../assets/images/{{t.id}}/{{i.id}}_A_thumbnail.jpg"
+                     alt="" (click)="selectItem(i)" (dblclick)="view(i)">
+
+                <i class="material-icons active-check fg-2d">check</i>
+                <i class="material-icons add-wish-list" (click)="addToWishList(i)"
+                   [class.fg-2d]="userWishList[i.id]" [class.fg-txt]="!userWishList[i.id]"
+                >favorite</i>
+                <i class="material-icons view fg-txt" [class.safari]="localSafari" (click)="view(i)">zoom_in</i>
+                <p class="item-name">{{i.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--combination drawer-->
+  <div class="drawer bg-1d" [fxFlex]="showCombView ? '245px' : '40px' " [class.active]="showCombView"
+       [fxFlex.lt-sm]="showCombView ? (maxCombView ? 'auto': '190px') : '30px'"
+       [class.inactive]="!showCombView" [class.cart-view]="cart" *ngIf="listMode !== 'p'">
+    <div class="icon-layer bg-1d">
+      <i class="material-icons" (click)="showCombView = !showCombView; maxCombView = false">
+        {{showCombView ? 'keyboard_arrow_down' :'keyboard_arrow_up'}}</i>
+    </div>
+    <div class="header-layer bg-1d">
+
+      <!--larger screen-->
+      <span class="drawer-header" fxHide.lt-sm [ngClass]="{it: translate.currentLang === 'it'}">
+        <!--{{'list.socks' | translate}} -->
+        <span class="drawer-header-number"
+              *ngIf="combinationCount > 0 && !showCombView">{{combinationCount}}</span>
+        {{'list.cmb_view' | translate}}</span>
+      <span class="drawer-header mbl-only" style="left: calc(45% - 50px);" (click)="showCombView = !showCombView">
+        <span class="drawer-header-number"
+              *ngIf="combinationCount > 0 && !showCombView">{{combinationCount}}</span>{{'list.cmb_view' | translate}}</span>
+
+      <!--middle screen-->
+      <div class="drawer-detail-set bg-1d" fxHide.lt-md>
+        <span class="drawer-details fg-txt">{{'list.socks' | translate}}</span>
+        <span class="drawer-detail-number bg-2l"> {{getTotalCount()}} </span>
+        <span class="drawer-details fg-txt">{{'list.cmb' | translate}}</span>
+        <span class="drawer-detail-number bg-2l"> {{combinationCount}} </span>
+      </div>
+
+      <!--small screen-->
+      <div class="drawer-detail-set xs-view bg-1d" [class.cart]="cart" fxHide.gt-sm>
+        <span class="drawer-details fg-txt">{{'list.socks' | translate}}</span>
+        <span class="drawer-detail-number bg-2l"> {{getTotalCount()}} </span>
+        <span class="drawer-details comb fg-txt">{{'list.cmb' | translate}}</span>
+        <span class="drawer-detail-number bg-2l"> {{combinationCount}} </span>
+      </div>
+
+      <i class="fas fa-angle-double-{{ maxCombView ? 'down' : 'up' }} mbl-fullscreen"
+         fxHide.gt-xs (click)="maxCombView = !maxCombView"></i>
+      <i class="material-icons cart-icon" (click)="cart=true" *ngIf="!cart">shopping_cart</i>
+      <i class="cart-icon-number" *ngIf="selectedItemsKeys().length > 0 && !cart">{{selectedItemsKeys().length}}</i>
+    </div>
+
+    <div class="content-layer bg-1d" [class.max-comb]="maxCombView">
+      <i class="material-icons" [fxHide]="maxCombView" fxFlex="30px" (click)="smoothScroll('comb', 'l')">keyboard_arrow_left</i>
+      <div fxFlex="auto" fxLayout="row" class="combinations bg-1d" #combView
+           (wheel)="horizontalScrolling($event)">
+        <div *ngFor="let i of combinationList" class="bg-1d">
+          <div *ngIf="i.visible" class="comb" fxFlex="130px" fxFlex.lt-md="95px">
+            <img class="comb-img"
+                 src="../../../assets/images/{{i.theme}}/combinations/{{i.i1}}_{{i.i2}}_M_A_thumbnail.jpg" alt=""
+                 (click)="viewComb(i.i1, i.i2, i.theme)">
+          </div>
+        </div>
+      </div>
+      <i class="material-icons" [fxHide]="maxCombView" fxFlex="30px" (click)="smoothScroll('comb', 'r')">keyboard_arrow_right</i>
+    </div>
+  </div>
+
+
+  <i class="material-icons pair-cart-icon" (click)="cart=true" *ngIf="listMode === 'p' && !cart">shopping_cart</i>
+  <i class="pair-cart-icon-number" *ngIf="listMode === 'p' && selectedItemsKeys().length > 0 && !cart">{{selectedItemsKeys().length}}</i>
+
+</div>
+
+<!--cart drawer-->
+
+<div class="check-out-panel bg-2l" [class.active]="cart" [class.inactive]="!cart">
+  <h4 class="cart-header bg-2d" routerLink="/user-cart">{{'list.checkout' | translate}}</h4>
+  <i class="material-icons arrows" (click)="smoothScroll('cart', 'u')">keyboard_arrow_up</i>
+  <div class="cart-items bg-2l" #cartView>
+    <div *ngFor="let i of selectedItemsKeys()" class="bg-2l">
+      <!--single-->
+      <div class="cart-item bg-2l" routerLink="/items-list"
+           [queryParams]="{view: selectedItems[i].item}" *ngIf="selectedItems[i].category === 'sox-1'">
+        <i class="quantity">{{selectedItems[i].quantity}}</i>
+        <img src="../../../assets/images/{{selectedItems[i].theme}}/{{i}}_C_thumbnail.jpg" alt=""
+             class="cart-img">
+      </div>
+
+      <!--pair-->
+      <div class="cart-item bg-2l" routerLink="/items-list"
+           [queryParams]="{view: selectedItems[i].item}" *ngIf="selectedItems[i].category === 'sox-3'">
+        <i class="quantity">{{selectedItems[i].quantity}}</i>
+        <img src="../../../assets/images/{{selectedItems[i].theme}}/{{i}}_A_thumbnail.jpg" alt=""
+             class="cart-img">
+      </div>
+
+      <!--fullpack-->
+      <div class="cart-item bg-2l" routerLink="/items-list"
+           [queryParams]="{view: selectedItems[i].item}" *ngIf="selectedItems[i].category === 'sox-6'">
+        <i class="quantity">{{selectedItems[i].quantity}}</i>
+        <img src="../../../assets/images/{{selectedItems[i].theme}}/fullpack_thumbnail.jpg" alt="" class="cart-img">
+      </div>
+    </div>
+  </div>
+  <i class="material-icons arrows" (click)="smoothScroll('cart', 'd')">keyboard_arrow_down</i>
+  <h4 class="total">{{totalCost | currencyChange }}</h4>
+  <i class="material-icons cart-icon" (click)="cart = false">shopping_cart</i>
+</div>
+
+<app-item-dialog #itemViewDialog></app-item-dialog>
+<app-combination-dialog #combinationDialog></app-combination-dialog>
+
+<!--mobile double tap notification-->
+<div fxHide.gt-xs class="dbl-tap-notification" fxLayout="" *ngIf="dblNotification">
+  <img src="../../../assets/images/dbltap.png" alt="" fxFlex="50px">
+  <div fxFlex="auto">
+    {{'list.2_tap' | translate}}
+  </div>
+</div>

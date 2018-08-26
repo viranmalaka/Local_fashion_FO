@@ -1,0 +1,6 @@
+<h2>{{'layout.search' | translate}}</h2>
+<div class="bg-1d" fxLayout="row" fxLayoutGap="5px">
+  <input type="text" name="query" [(ngModel)]="q" placeholder="Search names or colors">
+  <button class="bg-2l" routerLink="/items-search" [queryParams]="{q: q}">
+    <i class="fa fa-search"></i></button>
+</div>

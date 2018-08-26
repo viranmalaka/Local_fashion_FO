@@ -1,0 +1,91 @@
+<div class="header">{{'user_account.my_address' | translate}}</div>
+<div *ngIf="address.length === 0" class="no-address">
+  {{'user_account.no_address' | translate}}
+  <br>
+  <button class="update-button" (click)="addNew()">{{'user_account.add_new_address' | translate}}</button>
+</div>
+<div class="container" fxFlex="column" *ngIf="address.length !== 0">
+  <div fxFlex fxLayout="row" fxLayoutGap="10px" *ngFor="let x of address" class="list-item">
+    <div fxFlex="auto" style="position: relative">
+      <div class="name">{{x.title | titlecase}}. {{x.firstName}} {{x.lastName}}</div>
+      <div class="adrs-line">{{x.addressLine1}}</div>
+      <div class="adrs-line">{{x.addressLine2}}</div>
+      <div class="adrs-line">{{x.city}}</div>
+      <div class="adrs-line">{{x.state}}</div>
+      <div class="adrs-line">{{x.zipCode}}</div>
+      <div class="adrs-line">{{x.country}}</div>
+
+      <a class="button" (click)="updateAddress(x)">{{'user_account.update' | translate}}</a>
+      <a class="button delete-btn" (click)="deleteAddress(x)">{{'user_account.delete' | translate}}</a>
+    </div>
+  </div>
+
+  <button class="update-button" (click)="addNew()">{{'user_account.add_new_address' | translate}}</button>
+</div>
+
+
+<div class="modal" *ngIf="modal" #modalBackground (click)="backgroundClose($event)">
+  <i class="material-icons close-btn" (click)="modal = false">close</i>
+  <div class="modal-content">
+    <div class="mod-header">
+      {{'user_account.your_address' | translate}}
+    </div>
+    <form>
+      <div class="field">
+        <select type="text" [(ngModel)]="addForm.type" name="type">
+          <option [value]="null">{{'user_account.type' | translate}}</option>
+          <option [value]="0">{{'user_account.business' | translate}}</option>
+          <option [value]="1">{{'user_account.personal' | translate}}</option>
+        </select>
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.firstName" name="fn"
+               placeholder="{{'user_account.first_name' | translate}}">
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.lastName" name="lastname"
+               placeholder="{{'user_account.last_name' | translate}}">
+      </div>
+      <div class="field">
+        <select type="text"  [(ngModel)]="addForm.title" name="title">
+          <option [value]="null">{{'user_account.title' | translate}}</option>
+          <option [value]="'miss'">{{'user_account.miss' | translate}}</option>
+          <option [value]="'ms'">{{'user_account.ms' | translate}}</option>
+          <option [value]="'mrs'">{{'user_account.mrs' | translate}}</option>
+          <option [value]="'mr'">{{'user_account.mr' | translate}}</option>
+        </select>
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.addressLine1" name="al1"
+               placeholder="{{'user_account.address_line' | translate}} 1">
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.addressLine2" name="al2"
+               placeholder="{{'user_account.address_line' | translate}} 2">
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.city" name="city"
+               placeholder="{{'user_account.city_town' | translate}}">
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.state" name="state"
+               placeholder="{{'user_account.state' | translate}}">
+      </div>
+      <div class="field">
+        <input type="text" [(ngModel)]="addForm.zipCode" name="zip"
+               placeholder="{{'user_account.zip_code' | translate}}">
+      </div>
+      <div class="field">
+        <!--<input type="text" [(ngModel)]="addForm.country" name="coutry"-->
+               <!--placeholder="{{user_account.country' | translate}}">-->
+        <app-country-select [country]="addForm.country" (update)="changeCountry($event)"></app-country-select>
+      </div>
+      <div class="inline-checkbox">
+        <label for="make-default">
+          <input id="make-default" type="checkbox" [checked]="makeDefault" (change)="makeDefault != makeDefault"
+          >{{'user_account.default' | translate}}</label>
+      </div>
+      <button class="update-button" (click)="submit()">{{'user_account.submit' | translate}}</button>
+    </form>
+  </div>
+</div>

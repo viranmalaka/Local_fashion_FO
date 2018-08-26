@@ -1,0 +1,22 @@
+@import "../../../../assets/theme";
+
+div {
+  @extend .bg-1d;
+  //background: $bg2-col;
+  font-size: 15px;
+}
+h2 {
+  padding:10px;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+}
+
+.buttons {
+  padding: 2px 5px;
+  margin-top: 2px;
+
+  div {
+    background: transparent;
+  }
+}

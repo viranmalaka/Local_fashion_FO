@@ -1,0 +1,8 @@
+div {
+  background: none !important;
+}
+
+:host ::ng-deep div {
+  background: none !important;
+  color: black;
+}

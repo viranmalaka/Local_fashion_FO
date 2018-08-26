@@ -1,0 +1,65 @@
+<div class="container" fxLayout="column">
+  <div fxFlex="auto" fxFlexAlign="center" fxLayout="row">
+    <div fxFlex="300px" fxFlex.xs="240px" class="login">
+      <div class="header">
+        <i class="material-icons bg-1l">perm_identity</i>
+      </div>
+      <form class="form">
+        <div class="input">
+          <i class="material-icons bg-1l">perm_identity</i>
+          <input type="text" [placeholder]="!signupInputs ? 'EMAIL / USERNAME *' : 'USERNAME *'"
+                 [(ngModel)]="user.username" name="username">
+        </div>
+        <div class="input sign-anim" [class.hide]="!signupInputs">
+          <i class="material-icons bg-1l">face</i>
+          <input type="text" [(ngModel)]="user.fullname" placeholder="{{'user_account.fullname'|translate}} *" name="fullname">
+        </div>
+        <div class="input sign-anim" [class.hide]="!signupInputs">
+          <i class="material-icons bg-1l">alternate_email</i>
+          <input type="email" [(ngModel)]="user.email" placeholder="EMAIL *" name="email">
+        </div>
+        <div class="input">
+          <i class="material-icons bg-1l">lock_outline</i>
+          <input type="password" [(ngModel)]="user.password"
+                 placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" name="password">
+        </div>
+        <div fxLayout="" fxLayoutGap="6px">
+          <div class="button" fxFlex>
+            <button class="bg-2d" (click)="login()" [class.inactive]="signupInputs">{{'layout.login'|translate}}</button>
+          </div>
+          <div class="button" fxFlex>
+            <button class="bg-2d" (click)="signup()" [class.inactive]="!signupInputs">{{'layout.signup'|translate}}</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="social" fxLayout="row">
+        <a href="/auth/facebook" class="fb" fxFlex="50%">{{'login.login_with' | translate}} Facebook</a>
+        <a href="/auth/google" class="gl" fxFlex="50%">{{'login.login_with' | translate}} Google+</a>
+      </div>
+
+      <div class="footer">
+        <div fxLayout="row">
+          <div class="rememberMe" fxFlex="50%">
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">{{'login.remember_me' | translate}}</label>
+          </div>
+          <div fxFlex="50%">
+            <a href="" class="forget" routerLink="forget-password">{{'login.forget_pass' | translate}}</a>
+          </div>
+        </div>
+        <div fxLayout="row" class="guest">
+          <div fxFlex="100%"><a routerLink="/items-list">{{'login.guest' | translate}}</a></div>
+        </div>
+      </div>
+
+      <div class="why-log">
+        <ul>
+          <li>{{'user_account.fasterCheckout' | translate}}</li>
+          <li>{{'user_account.save' | translate}}</li>
+          <li>{{'user_account.orderStatus' | translate}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

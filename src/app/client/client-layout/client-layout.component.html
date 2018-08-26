@@ -1,0 +1,204 @@
+<div class="my-container" fxLayout="column">
+  <div fxLayout="row" fxFlex="70px" fxFlex.lt-md="60px" class="header">
+    <div fxFlex="70px" fxHide.lt-md fxFlexAlign="start"></div>
+
+    <div fxFlex fxHide.lt-md fxLayoutAlign="center">
+      <div fxFlex="900px" fxLayout="row" fxFlexAlign="center">
+        <div class="menu-items" fxLayout="row">
+          <a class="links fg-2l-h" routerLink="/items-list">{{'layout.socks' | translate}}</a>
+          <a class="links fg-2l-h" routerLink="/about-us">{{'layout.about_us' | translate}}</a>
+          <a class="links fg-2l-h" routerLink="/auth/account/wishlist">{{'layout.wish_list' | translate}}</a>
+        </div>
+        <div class="logo">
+          <img src="../../../assets/images/logo_small.png" alt="soxplay" routerLink="/">
+        </div>
+        <div class="menu-items" fxLayout="row">
+          <a routerLink="/auth/account" class="links fg-2l-h" *ngIf="isAuth">{{'layout.my_account' | translate}}</a>
+          <a routerLink="/user-login" class="links reg-icon fg-2l-h" *ngIf="!isAuth">{{'layout.login' | translate}} /
+            {{'layout.register' | translate}}</a>
+          <a (click)="logout()" *ngIf="isAuth" class="logout-icon fg-2l-h">
+            <i class="material-icons">exit_to_app</i>
+          </a>
+          <a href="" class="social-icons"><i class="fab fa-twitter"></i></a>
+          <a href="" class="social-icons"><i class="fab fa-facebook-f"></i></a>
+          <a href="" class="social-icons"><i class="fab fa-instagram"></i></a>
+          <a href="" class="social-icons"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings" style="z-index: 10">
+      <a class="cart-btn clear-btn fg-2l-h" routerLink="/items-list" [queryParams]="{'deselect-all': true}"><i class="fa fa-ban"></i> Clear</a>
+      <a class="cart-btn fg-2l-h" routerLink="/user-cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+      <i class="fa fa-cogs fg-2l-h open-btn" (click)="settings.show = true"></i>
+
+      <div class="dash-board" *ngIf="settings.show">
+        <div class="lng">
+          <span [class.select]="settings.lng === 'en'" (click)="changeLanguage('en')">
+            <i class="fa fa-globe"></i>
+          </span>
+          <span [class.select]="settings.lng === 'it'" (click)="changeLanguage('it')">
+            <img src="../../../assets/images/italy.svg" alt="" width="15px">
+          </span>
+        </div>
+        <div class="curr">
+          <span [class.select]="settings.curr === 'usd'" (click)="changeCurrency('usd')"><i
+            class="fa fa-dollar-sign"></i></span>
+          <span [class.select]="settings.curr === 'eur'" (click)="changeCurrency('eur')"><i class="fa fa-euro-sign"></i></span>
+        </div>
+        <div>
+          <button class="sox-btn" (click)="settings.show = false">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mbl-menu" fxHide.gt-sm>
+      <i class="material-icons bar-button" (click)="sideMenu = !sideMenu">menu</i>
+
+      <div class="mbl-side-menu  bg-1d" [class.active]="sideMenu" fxLayout="column">
+        <i class="material-icons close-btn" (click)="sideMenu=false">close</i>
+        <a class="menu-item bg-2l-h" routerLink="/items-list">{{'layout.socks' | translate}}</a>
+        <a class="menu-item bg-2l-h" routerLink="/about-us">{{'layout.about_us' | translate}}</a>
+        <a class="menu-item bg-2l-h" routerLink="/auth/account/wishlist">{{'layout.wish_list' | translate}}</a>
+        <a routerLink="/auth/account" class="links fg-2l-h" *ngIf="isAuth">{{'layout.my_account' | translate}}</a>
+        <a routerLink="/user-login" class="links reg-icon fg-2l-h" *ngIf="!isAuth">{{'layout.login' | translate}} /
+          {{'layout.register' | translate}}</a>
+        <a (click)="logout()" *ngIf="isAuth" class="logout-icon fg-2l-h">
+          <i class="fa fa-sign-out-alt"></i> {{'layout.logout' | translate}}
+        </a>
+        <br><br>
+        <!--<div fxFlexAlign="end" style="background: none;">-->
+        <a class="sub-menu-item" routerLink="/privacy-policy">{{'layout.privacy_policy' | translate}}</a>
+        <a class="sub-menu-item" routerLink="/cookies-policy">{{'layout.cookies' | translate}}</a>
+        <a class="sub-menu-item" routerLink="/payments">{{'layout.payments' | translate}}</a>
+        <a class="sub-menu-item" routerLink="/returns">{{'layout.returns' | translate}}</a>
+        <!--</div>-->
+
+        <div class="menu-items bg-1d " fxLayout="row" fxFlexAlign="center">
+          <a href="" class="social-icons"><i class="fab fa-twitter"></i></a>
+          <a href="" class="social-icons"><i class="fab fa-facebook-f"></i></a>
+          <a href="" class="social-icons"><i class="fab fa-instagram"></i></a>
+          <a href="" class="social-icons"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="logo">
+        <img src="../../../assets/images/logo_small.png" alt="soxplay" routerLink="/" fxFlex fxFlexAlign="center">
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxFlex="40px" fxFlex.lt-sm="30px" class="link-bar">
+    <div class="line-bar-1" fxFlex="80px" fxFlex.lt-md="30px" fxHide.xs></div>
+
+    <a *ngIf="router.url.substr(0, 11) === '/items-list' && themeOverflow" (click)="scrollThemeList(true)"
+       fxHide.gt-xs class="bg-1d"><i style="padding-top: 2px;" class="fa fa-angle-left"></i></a>
+
+    <div *ngIf="router.url.substr(0, 11) === '/items-list'" class="line-bar-2 bg-1d" fxFlex="auto"
+         fxLayout="row" fxLayoutAlign.gt-xs="center" style="overflow-x: hidden" #themeListRef>
+
+      <a routerLink="/items-list" class="fg-2l-h" [queryParams]="{play: true}"
+         routerLinkActive="active">{{'layout.play' | translate}}</a>
+
+      <a routerLink="/items-list" class="fg-2l-h" [queryParams]="{pack6: true}" routerLinkActive="active">SOX 6</a>
+
+      <!--<a routerLink="/items-list" class="fg-2l-h" [queryParams]="{theme: x.id }" routerLinkActive="active"-->
+         <!--*ngFor="let x of themeList">{{x.name}}</a>-->
+
+      <a routerLink="/items-list" [queryParams]="{pair: true}" routerLinkActive="active" class="fg-2l-h">SOX 3</a>
+      <!--<a routerLink="/items-list" class="special fg-2l-h">{{'layout.on-sale' | translate}}</a>-->
+    </div>
+
+    <a *ngIf="router.url.substr(0, 11) === '/items-list' && themeOverflow"
+       (click)="scrollThemeList(false)" fxHide.gt-xs class="bg-1d"><i style="padding-top: 2px;"
+                                                                      class="fa fa-angle-right"></i></a>
+    <div *ngIf="router.url.substr(0, 11) !== '/items-list'" class="line-bar-2" fxFlex="auto"
+         fxLayout="row" fxLayoutAlign.gt-xs="center"
+         [ngClass]="{'bg-1l': router.url === '/', 'bg-1d': router.url !== '/'}">
+    </div>
+
+  </div>
+
+  <!--side icons for desktops-->
+  <div fxFlex="auto" class="body" fxLayout="row">
+    <div class="side-icon-panel" fxFlex="80px" fxFlex.lt-md="30px" fxHide.xs fxLayout="column" fxLayoutAlign="end">
+      <app-pop-up fxFlex="15" icon="account_circle" [loginPop]="true" [loggedIn]="isAuth">
+        <app-login-widget></app-login-widget>
+      </app-pop-up>
+      <app-pop-up fxFlex="15" icon="place">
+        <app-location-widget></app-location-widget>
+      </app-pop-up>
+      <app-pop-up fxFlex="15" icon="search">
+        <app-search-widget></app-search-widget>
+      </app-pop-up>
+      <app-pop-up fxFlex="15" icon="help_outline" [disable]="true" routerLink="/faq"></app-pop-up>
+      <app-pop-up fxFlex="15" icon="local_phone">
+        <app-contact-us></app-contact-us>
+      </app-pop-up>
+      <app-pop-up fxFlex="15" icon="chat" #chatbot [chat]="true">
+        <app-chat-bot-widget #cbWidget></app-chat-bot-widget>
+      </app-pop-up>
+    </div>
+    <div class="router-area" fxLayout="row" fxFlex="auto">
+      <div class="bg-1d" fxFlex="40px" fxFlex.lt-md="30px" fxHide.xs
+           [ngClass]="{'bg-1l': router.url === '/', 'bg-1d': router.url !== '/'}"></div>
+      <div class="router-content" fxFlex="100">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+  </div>
+  <!--end side icons-->
+
+  <!--bottom links-->
+  <div fxHide.xs fxFlex="20px" fxFlex.lt-md="15px" fxLayout="row" fxLayoutAlign="center" class="footer">
+    <span>2018 SOXPLAY - ALL RIGHTS RESERVED</span>
+    <a fxHide.lt-md routerLink="/privacy-policy">{{'layout.privacy_policy' | translate}}</a>
+    <a fxHide.lt-md routerLink="/cookies-policy">{{'layout.cookies' | translate}}</a>
+    <a fxHide.lt-md routerLink="/payments">{{'layout.payments' | translate}}</a>
+    <a fxHide.lt-md routerLink="/returns">{{'layout.returns' | translate}}</a>
+  </div>
+  <!--bottom links end-->
+</div>
+
+<!--speed dials for mobile-->
+<fab-speed-dial direction="up" fxHide.gt-xs [fxHide]="router.url === '/user-cart' || router.url === '/'">
+  <button type="button" fab-toggle><i class="material-icons">add</i></button>
+
+  <button type="button" fab-button (click)="mblChat = true">
+    <app-pop-up [mbl]="true" [disable]="true" fxFlex="15" icon="chat" #chatbot
+                [chat]="true">
+      <app-chat-bot-widget #cbWidget></app-chat-bot-widget>
+    </app-pop-up>
+  </button>
+  <button type="button" fab-button>
+    <app-pop-up [mbl]="true" fxFlex="15" icon="local_phone">
+      <app-contact-us></app-contact-us>
+    </app-pop-up>
+  </button>
+  <button type="button" fab-button>
+    <app-pop-up [mbl]="true" fxFlex="15" icon="help_outline" [disable]="true" routerLink="/faq"></app-pop-up>
+  </button>
+  <button type="button" fab-button>
+    <app-pop-up [mbl]="true" fxFlex="15" icon="search">
+      <app-search-widget></app-search-widget>
+    </app-pop-up>
+  </button>
+  <button type="button" fab-button>
+    <app-pop-up [mbl]="true" fxFlex="15" icon="place">
+      <app-location-widget></app-location-widget>
+    </app-pop-up>
+  </button>
+  <button type="button" fab-button routerLink="/user-login">
+    <i class="material-icons">account_circle</i>
+  </button>
+</fab-speed-dial>
+
+
+<div class="mbl-chat-bot-back" *ngIf="mblChat" fxHide.gt-xs>
+  <div class="mbl-chat-bot">
+    <i class="material-icons close-btn" (click)="mblChat = false">close</i>
+    <iframe src="https://ysenarath.github.io/apps/soxbot/">
+    </iframe>
+  </div>
+</div>

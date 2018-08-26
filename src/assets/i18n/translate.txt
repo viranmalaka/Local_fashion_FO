@@ -1,0 +1,38 @@
+
+//next item: + 1 calzino __ (add € next to 4)
+//(use two finge pintch to zooming)--usa 2 dita per ingrandire
+//add to cart--aggiungi al carrello
+//go to cart-- vai al carrello
+//quantity--quantità
+//size--taglia
+//related items--articoli simili
+//socks have evolved over the.. etc: i will remove this and put technical description from Ravi
+//total--totale
+//discount--sconto
+//final--prezzo finale
+//my cart--il mio carrello
+//count--calzini singoli
+//proceed to chechout--procedi con l'acquisto
+//ship to--spedisci a
+//select address--scegli indirizzo
+//new one--nuovo
+//type--tipo
+//first name: to all this I already gave translation last time
+//add coupons: aggiungi coupons
+//apply--applica
+//sox cost--costo dei calzini
+//discount--sconto
+//your card details--dettagli carta di credito
+//your billing address:--indirizzo di fatturazione
+//same as shipping--uguale all'indirizzo di spedizione
+//pay__--paga__€
+//whish list--area riservata
+//faster checkout--checkout rapido
+//save your bag-- salva la tua selezione
+//see the status of your orders--traccia il tuo ordine
+//privacy policy: if I click i have the White screen
+//returns--resi : also here please add the text I already sent you
+//total cost--costo totale
+//on sale--in saldo
+//soxsix pack 01--soxsix01 (pacco da 6 calzini singoli)
+//soxsix pack 02--soxsix02 (pacco da 6 calzini singoli)

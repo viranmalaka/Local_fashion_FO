@@ -1,0 +1,335 @@
+@import "../../../assets/theme";
+
+.container {
+  max-width: 850px;
+  padding: 10px;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  .select-area {
+    margin: 20px 0;
+  }
+
+  .coupons {
+    border: solid getVal('col1-d') 1px;
+    padding: 10px;
+    margin: 5px;
+    position: relative;
+  }
+  .existing {
+    .address {
+      border: solid getVal('col1-d') 1px;
+      padding: 10px;
+      margin: 5px;
+      position: relative;
+
+      .btn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    }
+
+
+  }
+
+  .addnewone {
+    text-align: center;
+    .field {
+      margin: 5px;
+      select {
+        color: getVal('txt');
+        min-width: 209px;
+        height: 30px;
+        background-color: white;
+      }
+      input {
+        min-width: 200px;
+        color: getVal('txt');
+      }
+      &.invalid {
+        select, input {
+          border: solid red 1px;
+        }
+      }
+    }
+  }
+
+  .paypal {
+    padding: 20px 60px;
+    text-align: center;
+  }
+
+  .summery {
+    padding: 20px;
+    //padding: 15px 5px 5px 5px;
+    -webkit-box-shadow: inset 0 6px 30px -9px rgba(117, 117, 117, 0.72);
+            box-shadow: inset 0 6px 30px -9px rgba(117, 117, 117, 0.72);
+
+    table {
+      tr {
+        td {
+          padding-left: 10px;
+        }
+        &.final {
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .card {
+    font-size: 15px;
+
+    .field-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 5px;
+    }
+    .card-field {
+      margin: 3px;
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      label {
+        margin: 5px;
+        width: 110px;
+        text-align: end;
+      }
+      input {
+        width: 200px;
+      }
+    }
+
+    .pay-btn {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      button {
+        border: none;
+        border-radius: 5px;
+        background-color: getVal('col2-d');
+        font-size: 20px;
+        padding: 10px;
+      }
+    }
+  }
+
+
+  .summary-list {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 20px;
+    .item {
+      margin: 3px;
+      padding: 3px;
+      border: solid getVal('col1-d') 1px;
+      .img {
+        height: 75px;
+      }
+      h3{
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// checkbox styels
+.rb-container {
+  //display: block;
+  position: relative;
+  margin: 0 5px;
+  padding-left: 25px;
+  padding-top: 2px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:hover {
+    /* On mouse-over, add a grey background color */
+    input ~ .checkmark {
+      background-color: getVal('col2-l');
+    }
+  }
+
+  /* Hide the browser's default radio button */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+
+    /* When the radio button is checked, add a blue background */
+    &:checked ~ .checkmark {
+      background-color: getVal('col2-d');
+      /* Show the indicator (dot/circle) when checked */
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: getVal('col1-d');
+    border-radius: 50%;
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+  }
+  .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
+}
+
+.modal {
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.2s;
+  animation-name: animatetop;
+  animation-duration: 0.2s;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.19);
+  .modal-content {
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 300px;
+    height: 500px;
+    margin: 50px auto;
+    overflow-y: auto;
+    .header {
+      margin-top: 15px;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .address {
+      padding: 10px;
+      margin: 10px;
+      border-bottom: solid getVal('col1-d') 1px;
+      border-top: solid getVal('col1-d') 1px;
+      div {
+        background-color: transparent;
+      }
+      &:hover {
+        background-color: getVal('col2-l');
+      }
+
+    }
+  }
+
+  .close-btn {
+    position: relative;
+    top: 67px;
+    left: calc((100% - 300px) / 2 + 287px);
+    background: white;
+    border-radius: 20px;
+    color: #c00000;
+  }
+}
+
+
+@-webkit-keyframes rotate {
+  0%    { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100%  { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+
+@keyframes rotate {
+  0%    { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100%  { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+.spinner {
+  //margin: calc(50% - 18px) calc(50% - 18px);
+  top: calc(50% - 18px);
+  left: calc(50% - 18px);
+  height: 36px;
+  width: 36px;
+  -webkit-animation: rotate 1s infinite linear;
+          animation: rotate 1s infinite linear;
+  border: 8px solid getVal('col2-d');
+  background: transparent;
+  border-right-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+}
+
+
+.processing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.init-paypal {
+  color: getVal('txt');
+  text-transform: none;
+  padding: 10px;
+  background: getVal('col2-l') !important;
+}
+
+
+//stripe
+
+.StripeElement {
+  background-color: white;
+  height: 40px;
+  padding: 20px 7px 0 7px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0 1px 3px 0 #e6ebf1;
+          box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  -webkit-transition: -webkit-box-shadow 150ms ease;
+  transition: -webkit-box-shadow 150ms ease;
+  -o-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease, -webkit-box-shadow 150ms ease;
+
+  div {
+    margin: 10px 0!important;
+  }
+}
+
+.StripeElement--focus {
+  -webkit-box-shadow: 0 1px 3px 0 #cfd7df;
+          box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+

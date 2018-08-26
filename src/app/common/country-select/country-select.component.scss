@@ -1,0 +1,8 @@
+@import "../../../assets/theme";
+
+select {
+  color: getVal('txt');
+  width: 209px;
+  height: 34px;
+  background-color: white;
+}

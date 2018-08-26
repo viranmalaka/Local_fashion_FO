@@ -1,0 +1,6 @@
+<h2>{{'layout.contact_us' | translate}}</h2>
+<form class="form">
+  <input type="email" name="email" placeholder="Email" id="email" [(ngModel)]="email">
+  <textarea name="msg" id="msg" placeholder="Your message..." [(ngModel)]="msg"></textarea>
+  <button class="sox-btn" (click)="submit()">Submit</button>
+</form>

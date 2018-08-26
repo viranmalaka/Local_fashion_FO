@@ -1,0 +1,25 @@
+<!--<app-landing-page (done)="open = true" *ngIf="!open"></app-landing-page>-->
+
+<div class="container">
+  <ngx-masonry [options]="{transitionDuration: '0.5s'}" [updateLayout]="open"
+   [useImagesLoaded]="true" (layoutComplete)="setHeights()">
+    <ngxMasonryItem class="scene" *ngFor="let item of tiles; let n = index">
+      <!--<img style="visibility: hidden" src="../../../assets/images/landingPage/tiles/SET_{{item.img}}.jpg">-->
+
+      <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+          <div class="front">
+            <img  src="../../../assets/images/landingPage/tiles/SET_{{item.img}}.jpg">
+          </div>
+          <div class="back">
+            <img  src="../../../assets/images/landingPage/tiles/SET_{{item.img}}.jpg">
+            <div class="filter"></div>
+            <button class="sox-btn fg-txt" [routerLink]="item.link"
+                    [queryParams]="item.params">{{item.button}}</button>
+          </div>
+        </div>
+      </div>
+
+    </ngxMasonryItem>
+  </ngx-masonry>
+</div>

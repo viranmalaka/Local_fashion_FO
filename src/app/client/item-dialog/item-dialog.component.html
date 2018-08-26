@@ -1,0 +1,175 @@
+<div class="modal" (click)="backgroundClose($event)"
+     [ngStyle]="{'display': (show ? 'block' : 'none')}" #modalBackground>
+  <div class="modal-content" fxHide.lt-md *ngIf="item">
+    <i class="material-icons close-btn" (click)="closeModal()" (keyup)="escClose($event)">close</i>
+
+    <div fxLayout="row">
+      <div fxFlex="60" class="img">
+        <div class="tile" (mouseover)="imgScale=2.5" (mouseleave)="imgScale=1">
+          <div class="photo" #photoRef
+               [ngStyle]="{'background-image': 'url(' + '\'../../../assets/images/' + selectedImage + '_fullsized.jpg\')',
+           'transform': 'scale(' + imgScale + ')'}"
+          ></div>
+        </div>
+
+        <div class="thumbnails" *ngIf="item.category === 'sox-1'">
+          <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_A_thumbnail.jpg" alt="" class="photo-thumbnail"
+               (click)="selectedImage=item.themeId + '/' + item.id + '_A'">
+          <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_B_thumbnail.jpg" alt="" class="photo-thumbnail"
+               (click)="selectedImage=item.themeId + '/' + item.id + '_B'">
+          <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_C_thumbnail.jpg" alt="" class="photo-thumbnail"
+               (click)="selectedImage=item.themeId + '/' + item.id + '_C'">
+          <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_D_thumbnail.jpg" alt="" class="photo-thumbnail"
+               (click)="selectedImage=item.themeId + '/' + item.id + '_D'">
+        </div>
+        <div class="thumbnails" *ngIf="item.category === 'sox-3'"> <!--only one picture given for pairs-->
+          <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_A_thumbnail.jpg" alt="" class="photo-thumbnail"
+               (click)="selectedImage=item.themeId + '/' + item.id + '_A'">
+        </div>
+        <div class="thumbnails" *ngIf="item.category === 'sox-6'">
+          <img src="../../../assets/images/{{item.themeId}}/fullpack_thumbnail.jpg" alt="" class="photo-thumbnail"
+               (click)="selectedImage=item.themeId + '/fullpack'">
+        </div>
+
+      </div>
+      <div fxFlex="40" class="board" #scrollPane>
+        <h1>{{item.name}}</h1>
+        <!--<h1 class="price fg-2d" *ngIf="listMode !== 't'">{{item.price | currencyChange}}-->
+        <!--<span class="discount">{{reduced !== 0 ? 'Next item: ': ''}}-->
+        <!--{{(reduced !== 0 ? (item.price - reduced) : '') | currencyChange}}</span>-->
+        <!--</h1>-->
+        <h1 class="price fg-2d">{{item.price | currencyChange}}
+          <span *ngIf="item.category === 'sox-6'" class="discount">{{33 | currencyChange}}</span>
+          <span *ngIf="item.category === 'sox-3'" class="discount">{{16.5 | currencyChange}}</span>
+        </h1>
+
+        <button class="sox-btn action fg-txt" style="width: 140px;" (click)="addToCart(selectedItem.quantity, selectedItem.size)"
+                [class.active]="item['selected']">{{item['selected'] ?
+          transService.instant('list.added') : transService.instant('list.add')}}
+          {{'list.toCart' | translate}}
+        </button>
+        <button class="sox-btn bg-1d  fg-txt action" routerLink="/user-cart">{{'list.goToCart' | translate}}</button>
+        <div class="bg-1d qty" fxLayout="row" fxLayoutAlign="center">
+          <span>{{'list.qty' | translate}} :</span>
+          <i class="material-icons fg-2l-h" (click)="setQty(false)">keyboard_arrow_left</i>
+          <input class="bg-1d fg-txt" [(ngModel)]="selectedItem.quantity" type="number" [max]="100" [min]="0">
+          <i class="material-icons fg-2l-h" (click)="setQty(true)">keyboard_arrow_right</i>
+        </div>
+        <div fxLayout="">
+          <div class="bg-1d fg-txt size-label">EUR SOX {{ 'cart.size'| translate }} :</div>
+          <button class="sox-btn size" [class.active]="selectedItem.size === 1" (click)="selectedItem.size = 1">36-40
+          </button>
+          <button class="sox-btn size" [class.active]="selectedItem.size === 2" (click)="selectedItem.size = 2">41-46
+          </button>
+        </div>
+        <!--<p class="description">{{item.description}}</p>-->
+        <p class="description" *ngIf="transService.currentLang === 'en'">This product has been made out of 20s combed cotton, 20/40 Nylon Lycra which is finest in
+          the market. Used 168 Needle 3.75 inch dia knitting machine. Used antimicrobial, antipilling wash. Comfort
+          stretch.
+          A big element in the middle of the sock has maintained in order to make every sock matching with each other.
+          Designing is done keeping in mind the free spirit and colorful life which represents the freedom of
+          choice. </p>
+
+        <p class="description" *ngIf="transService.currentLang === 'it'">
+          Questo prodotto è stato realizzato in cotone pettinato anni '20, Lycra 20/40 di nylon, che è il migliore sul
+          mercato. Macchina per lavorare a maglia da 168 pollici Needle 3.75 pollici. Usato antimicrobico, lavaggio
+          antipilling. Tratto comfort <br>
+          Un grande elemento nel mezzo del calzino è stato mantenuto al fine di rendere ogni calza corrispondente l'uno
+          con l'altro. La progettazione è fatta tenendo conto dello spirito libero e della vita colorata che rappresenta
+          la libertà di scelta.
+        </p>
+        <div class="related-items">
+          <h3>{{'list.relatedItems' | translate}}</h3>
+          <span (click)="trigger(t, null)" class="theme" *ngFor="let t of themeItems">
+            <img *ngIf="t.id !== item.id && t.category === item.category"
+                 src="../../../assets/images/{{t.themeId}}/{{t.id}}_C_thumbnail.jpg" alt="">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--mobile-->
+  <div class="modal-content" fxHide.gt-sm *ngIf="item">
+    <i class="material-icons close-btn fg-2d" (click)="show = false">close</i>
+    <div class="scroll-pane" #mblScrollPane>
+      <pinch-zoom>
+        <img src="../../../assets/images/{{selectedImage}}_fullsized.jpg"
+             alt="" class="mbl_img">
+      </pinch-zoom>
+      <i class="instruction">({{ 'list.zoom' | translate}})</i>
+      <div class="thumbnails" *ngIf="item.category === 'sox-1'">
+        <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_A_thumbnail.jpg" alt="" class="photo-thumbnail"
+             (click)="selectedImage=item.themeId + '/' + item.id + '_A'">
+        <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_B_thumbnail.jpg" alt="" class="photo-thumbnail"
+             (click)="selectedImage=item.themeId + '/' + item.id + '_B'">
+        <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_C_thumbnail.jpg" alt="" class="photo-thumbnail"
+             (click)="selectedImage=item.themeId + '/' + item.id + '_C'">
+        <img src="../../../assets/images/{{item.themeId}}/{{item.id}}_D_thumbnail.jpg" alt="" class="photo-thumbnail"
+             (click)="selectedImage=item.themeId + '/' + item.id + '_D'">
+      </div>
+      <div class="thumbnails" *ngIf="item.category === 'sox-3'"> <!--only one picture given for pairs-->
+        <img src="../../../assets/images/{{item.themeId}}//{{item.id}}_A_thumbnail.jpg" alt="" class="photo-thumbnail"
+             (click)="selectedImage=item.themeId + '/' + item.id + '_A'">
+      </div>
+      <div class="thumbnails" *ngIf="item.category === 'sox-6'">
+        <img src="../../../assets/images/{{item.themeId}}/fullpack_thumbnail.jpg" alt="" class="photo-thumbnail"
+             (click)="selectedImage=item.themeId + '/fullpack'">
+      </div>
+
+      <div class="board">
+        <h1>{{item.name}}</h1>
+        <h1 class="price fg-2d">
+          <span class="discount" *ngIf="item.category === 'sox-6'">{{33 | currencyChange}}</span>
+          <span class="discount" *ngIf="item.category === 'sox-3'">{{16.50 | currencyChange}}</span>
+          {{item.price | currencyChange}}
+        </h1>
+        <button class="sox-btn fg-txt action" (click)="addToCart(selectedItem.quantity, selectedItem.size)" [class.active]="item['selected']">
+          {{item['selected'] ?
+          transService.instant('list.added') : transService.instant('list.add')}}
+          {{'list.toCart' | translate}}
+        </button>
+
+        <button class="sox-btn bg-1d fg-txt action" routerLink="/user-cart">Go To Cart</button>
+
+        <div class="bg-1d qty" fxLayout="row" fxLayoutAlign="center">
+          <span>{{'list.qty' | translate}} :</span>
+          <i class="material-icons fg-2l-h" (click)="setQty(false)">keyboard_arrow_left</i>
+          <input class="bg-1d fg-txt" [(ngModel)]="selectedItem.quantity" type="number" [max]="100" [min]="0">
+          <i class="material-icons fg-2l-h" (click)="setQty(true)">keyboard_arrow_right</i>
+        </div>
+        <div style="display: inline-flex;">
+          <div class="bg-1d fg-txt size-label">EUR SOX {{ 'cart.size'| translate }} :</div>
+          <button class="sox-btn size" [class.active]="selectedItem.size === 1" (click)="selectedItem.size = 1">36-40
+          </button>
+          <button class="sox-btn size" [class.active]="selectedItem.size === 2" (click)="selectedItem.size = 2">41-46
+          </button>
+        </div>
+        <!--<p class="description">{{item.description}}</p>-->
+        <p class="description" *ngIf="transService.currentLang === 'en'">This product has been made out of 20s combed cotton, 20/40 Nylon Lycra which is finest in
+          the market. Used 168 Needle 3.75 inch dia knitting machine. Used antimicrobial, antipilling wash. Comfort
+          stretch.
+          A big element in the middle of the sock has maintained in order to make every sock matching with each other.
+          Designing is done keeping in mind the free spirit and colorful life which represents the freedom of
+          choice. </p>
+
+        <p class="description" *ngIf="transService.currentLang === 'it'">
+          Questo prodotto è stato realizzato in cotone pettinato anni '20, Lycra 20/40 di nylon, che è il migliore sul
+          mercato. Macchina per lavorare a maglia da 168 pollici Needle 3.75 pollici. Usato antimicrobico, lavaggio
+          antipilling. Tratto comfort <br>
+          Un grande elemento nel mezzo del calzino è stato mantenuto al fine di rendere ogni calza corrispondente l'uno
+          con l'altro. La progettazione è fatta tenendo conto dello spirito libero e della vita colorata che rappresenta
+          la libertà di scelta.
+        </p>
+
+        <div class="related-items">
+          <div>{{'list.relatedItems' | translate}}</div>
+          <span (click)="goToRelatedItem(t)" class="theme" *ngFor="let t of themeItems">
+            <img *ngIf="t.id !== item.id && t.category === item.category"
+                 src="../../../assets/images/{{t.themeId}}/{{t.id}}_C_thumbnail.jpg" alt="">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+@import "../../../../assets/theme";
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.update-button {
+  border: none;
+  margin-top: 5px;
+  background: getVal('col2-l');
+  color: getVal('txt');
+  font-weight: bold;
+  font-size: 16px;
+  width: 209px;
+  margin-left: 210px;
+  padding: 9px;
+}
+
+.container {
+  max-width: 650px;
+
+  .section {
+    border: solid 1px getVal('col1-d');
+    border-radius: 3px;
+    //text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    div {
+      .field {
+        margin: 5px;
+        label {
+          display: inline-block;
+          width: 200px;
+          text-align: end;
+        }
+
+        select {
+          color: getVal('txt');
+          width: 210px;
+          height: 34px;
+          background-color: white;
+        }
+        input {
+          color: getVal('txt');
+          padding-left: 4px;
+          width: 200px;
+        }
+        .birthday {
+          width: 64px;
+        }
+      }
+
+    }
+
+    &.inactive {
+      .field {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .update-button {
+    margin-left: 70px;
+  }
+  .container {
+
+    .section {
+      div {
+        .field {
+          label {
+            width: 140px;
+          }
+          input {
+            width: 150px;
+          }
+          select {
+            width: 159px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .update-button {
+    margin-left: 25px;
+  }
+  .container {
+
+    .section {
+      div {
+        .field {
+          label {
+            width: 64px;
+            font-size: 13px;
+            text-align: left;
+          }
+          input {
+            width: 180px;
+          }
+          select {
+            width: 189px;
+          }
+        }
+      }
+    }
+  }
+}

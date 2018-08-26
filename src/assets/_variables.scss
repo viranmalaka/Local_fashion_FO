@@ -1,0 +1,29 @@
+$themes: (
+  t-yellow: (
+    col1-l: #f4f3f3, // CHANGE BACKGROUND FROM white
+    col1-d: #abafb2,
+    //col1-l : white,
+    //col1-d:#e9e9e9,
+    col2-l: #fabd48,
+    col2-d: #ffa800,
+    txt: #0b2943,
+  ),
+  t-green: (
+    col1-l: #e9e9e9,
+    col1-d: #abafb2,
+    col2-l: #85fa4d,
+    col2-d: #40ff00,
+    txt: #431e39,
+  ),
+  t-dark: (
+    col1-l: #202d3d,
+    col1-d: #353f4b,
+    col2-l: #f35c61,
+    col2-d: #de414d,
+    txt: #fff,
+  )
+);
+
+@function getVal($key) {
+  @return map-get(map-get($themes, 't-yellow'), $key);
+}

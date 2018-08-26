@@ -1,0 +1,70 @@
+@import "../../../../assets/theme";
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.container {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  .item {
+    position: relative;
+    margin: 10px;
+    img {
+      border: solid getVal('col1-d') 2px;
+      width: 150px;
+    }
+    @media (max-width: 600px) {
+      img {
+        width: 110px;
+      }
+    }
+    .item-price {
+      top: -8px;
+      left: -8px;
+      padding: 2px 5px;
+      position: absolute;
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .add-wish-list {
+      position: absolute;
+      font-size: 25px;
+      top: 5px;
+      right: 0;
+    }
+    .item-name {
+      font-size: 13px;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .no-item {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 25px;
+  }
+}
+.list-item {
+  border: solid 2px getVal('col1-d');
+  padding: 5px;
+  margin-bottom: 5px;
+
+  .name {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .button {
+    position: absolute;
+    background-color: getVal('col2-d');
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+  }
+}

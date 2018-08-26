@@ -1,0 +1,34 @@
+@import "../../../assets/theme";
+
+.container {
+  margin: 10px;
+  .links {
+    display: block;
+    .link {
+      text-transform: none;
+      display: block;
+      padding: 30px 15px;
+      text-align: start;
+      border-bottom: solid 1px getVal('col1-d');
+
+      &.active {
+        font-weight: bold;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  .outlet {
+    margin: 10px;
+  }
+}
+
+.mbl-nav {
+  margin-bottom: 20px;
+  a {
+    &.active {
+      border-bottom: solid getVal('col1-d') 3px;
+    }
+  }
+}

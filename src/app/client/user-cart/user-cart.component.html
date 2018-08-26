@@ -1,0 +1,112 @@
+<div fxLayout="column" fxFlex class="container">
+  <div fxLayout="row" fxFlex="60px">
+    <button class="back-btn" fxFlex="150px" fxHide.xs routerLink="/items-list">
+      <!--<i class="fa fa-angle-left"></i>-->
+      {{'cart.buy_more' | translate}}
+    </button>
+    <button class="back-btn" fxFlex="50px" fxHide.gt-xs routerLink="/items-list">
+      <i class="fa fa-angle-left"></i>
+      <!--BUY MORE ITEMS-->
+    </button>
+
+    <h1 class="header" fxFlex.lt-md="90%">{{'cart.my_cart' | translate}}</h1>
+  </div>
+  <div fxLayout="row" fxFlex="20px" class="table-title" *ngIf="getSelectedItemsKeys().length > 0">
+    <div fxFlex="150px" fxFlex.lt-md="20%" fxHide.lt-sm>{{'cart.preview' | translate}}</div>
+    <div fxFlex="150px" fxFlex.lt-md="20%" fxHide.gt-xs></div>
+    <div fxFlex="580px" fxFlex.lt-md="60%" fxLayout="row">
+      <div fxFlex fxHide.lt-md>{{'cart.item' | translate}}</div>
+      <div fxFlex fxHide.lt-md>{{'cart.theme' | translate}}</div>
+      <div fxFlex>{{'cart.qty' | translate}}</div>
+      <div fxFlex>{{'cart.size' | translate}}</div>
+      <div fxFlex>{{'cart.price' | translate}}</div>
+    </div>
+  </div>
+
+  <div fxFlex="auto" class="item-list">
+    <div fxLayout="row" class="checkout-item" *ngFor="let x of getSelectedItemsKeys()">
+      <div fxFlex="150px" fxFlex.lt-md="20%" class="img bg-txt">
+
+        <img *ngIf="selectedItems[x].category === 'sox-6'"
+             style="margin: auto;"
+             src="../../../assets/images/{{selectedItems[x].theme}}/fullpack_thumbnail.jpg" alt="">
+        <img *ngIf="selectedItems[x].category === 'sox-1'"
+             style="margin: auto;"
+             src="../../../assets/images/{{selectedItems[x].theme}}/{{x}}_C_thumbnail.jpg" alt="">
+        <img *ngIf="selectedItems[x].category === 'sox-3'"
+             style="margin: auto;"
+             src="../../../assets/images/{{selectedItems[x].theme}}/{{x}}_A_thumbnail.jpg" alt="">
+      </div>
+      <div fxFlex="580px" fxFlex.lt-md="60%" fxLayout="row" class="details bg-2l">
+        <div fxFlex fxHide.lt-md class="bg-2l"><span>
+          {{localSelList[x]?.name }}
+        </span></div>
+        <div fxFlex fxHide.lt-md class="bg-2l"><span>
+          {{localSelList[x]?.theme.name}}
+        </span></div>
+        <div fxFlex fxFlex.lt-md="40%" class="bg-2l">
+          <!--<span>-->
+          <button class="btn bg-2l fg-txt" (click)="setQty(x, false)">
+            <i class="fas fa-angle-left"></i></button>
+            <span class="qty">{{selectedItems[x]?.quantity}}</span>
+          <button class="btn bg-2l fg-txt" (click)="setQty(x, true)">
+            <i class="fas fa-angle-right"></i></button>
+          <!--</span>-->
+        </div>
+        <div fxFlex fxFlex.lt-md="30%" class="bg-2l size-div">
+          <span>
+              <button class="btn bg-2l fg-txt"
+                      [class.active]="selectedItems[x]?.size === 1"
+                      (click)="setSoxSize(x, 1)">36-40</button>
+              <button class="btn bg-2l fg-txt"
+                      [class.active]="selectedItems[x]?.size === 2"
+                      (click)="setSoxSize(x, 2)">41-46</button>
+          </span>
+        </div>
+        <div fxFlex fxFlex.lt-md="30%" class="bg-2l"><span>
+          {{(selectedItems[x].quantity * localSelList[x]?.price) | currencyChange}}
+        </span></div>
+      </div>
+      <div fxFlex="50px" fxFlex.lt-md="10%" class="remove-cart" (click)="remove(localSelList[x], x)">
+        <i class="material-icons bg-1d-h">delete_forever</i>
+      </div>
+    </div>
+
+    <div class="no-item" *ngIf="getSelectedItemsKeys().length === 0">
+      No Item Selected. Go Back and Select More.
+      <br>
+      <button class="sox-btn" routerLink="/items-list">
+        Buy More Items
+      </button>
+    </div>
+  </div>
+
+  <div fxLayout="" fxFlex="90px" class="checkout-summery">
+    <!--<div fxFlex="40px" fxHide.gt-xs></div>-->
+    <div fxFlex="170px" class="text-bg">
+      {{'checkout.count' | translate }}: <span class="highlight bg-2l">{{totalCount}}</span>
+    </div>
+    <div fxFlex="590px" fxFlex.lt-md="60%" class="text-bg price">
+      <!--{{'cart.total' | translate}} :<br>-->
+      <!--<span class="discount">{{'cart.discount' | translate}} :</span><br>-->
+      <strong>{{'cart.final' | translate}} :</strong>
+    </div>
+    <div fxFlex="70px" class="text-bg price">
+      <!--{{nonDiscountCost | currencyChange}}-->
+      <!--<br>-->
+      <!--<span class="discount">-->
+        <!--{{(nonDiscountCost - finalCost) === 0  ? (getSelectedItemsKeys().length > 0 ? 'Non': '') :-->
+        <!--(nonDiscountCost - finalCost) | currencyChange}}</span>-->
+      <!--<br>-->
+      <span class="highlight bg-2l" *ngIf="finalCost !== 0">{{finalCost | currencyChange}}</span>
+      <button class="proceed-btn" routerLink="checkout" [disabled]="getSelectedItemsKeys().length === 0">{{'cart.proceed' | translate}}</button>
+
+    </div>
+  </div>
+  <!--<div fxLayout="" fxFlex="40px">-->
+    <!--<div fxFlex="160px"></div>-->
+    <!--<div fxFlex="610px" fxFlex.lt-md="60%" fxLayout fxLayoutAlign="end">-->
+    <!--</div>-->
+  <!--</div>-->
+
+</div>

@@ -1,0 +1,212 @@
+<div fxLayout="column" class="container" fxLayoutGap="20px" style="position: relative">
+  <div style="position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.57);
+  width: 100%; height: 100%; z-index: 100"></div>
+  <div fxFlex fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+    <div fxFlex>
+      <h3>{{'checkout.ship_to' | translate}}</h3>
+
+      <div class="select-area">
+        <label class="rb-container">{{'checkout.select_address' | translate}}
+          <input type="radio" name="radio" [value]="1" [(ngModel)]="addressMode" [disabled]="!isAuth">
+          <span class="checkmark"></span>
+        </label>
+        <label class="rb-container">{{'checkout.new_one' | translate}}
+          <input type="radio" name="radio" [value]="2" [(ngModel)]="addressMode">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="existing" *ngIf="addressMode === 1">
+        <div class="address" *ngIf="address.length > 0 && selectedAddress">
+          <div>{{selectedAddress.title | titlecase }}. {{selectedAddress.firstName}} {{selectedAddress.lastName}}</div>
+          <div>{{selectedAddress.addressLine1}}</div>
+          <div>{{selectedAddress.addressLine2}}</div>
+          <div>{{selectedAddress.city}}, {{selectedAddress.state}}, {{selectedAddress.zipCode}}</div>
+          <div>{{selectedAddress.country}}</div>
+          <button class="btn sox-btn" (click)="addressModal = true">
+            <i class="fa fa-edit"></i>
+          </button>
+        </div>
+
+        <div class="address" *ngIf="address.length === 0">
+          {{'checkout.no_address' | translate }}
+        </div>
+      </div>
+
+      <div aria-disabled="true" class="addnewone" *ngIf="addressMode === 2">
+
+        <form #newAddress>
+          <div class="field" [class.invalid]="type.invalid && (type.dirty || type.touched)">
+            <select type="text" [(ngModel)]="addressForm.type" name="type" required #type="ngModel">
+              <option [value]="null">{{'checkout.type' | translate}}</option>
+              <option [value]="0">{{'checkout.business' | translate}}</option>
+              <option [value]="1">{{'checkout.personal' | translate}}</option>
+            </select>
+          </div>
+          <div class="field" [class.invalid]="fn.invalid && (fn.dirty || fn.touched)">
+            <input type="text" required [(ngModel)]="addressForm.firstName" name="fn"
+                   placeholder="{{'checkout.first_name' | translate}}" #fn="ngModel">
+          </div>
+          <div class="field">
+            <input type="text" [(ngModel)]="addressForm.lastName" name="ln"
+                   placeholder="{{'checkout.last_name' | translate}}">
+          </div>
+          <div class="field">
+            <select type="text" [(ngModel)]="addressForm.title" name="title">
+              <option [value]="null">{{'checkout.title' | translate}}</option>
+              <option [value]="'miss'">{{'checkout.miss' | translate}}</option>
+              <option [value]="'ms'">{{'checkout.ms' | translate}}</option>
+              <option [value]="'mrs'">{{'checkout.mrs' | translate}}</option>
+              <option [value]="'mr'">{{'checkout.mr' | translate}}</option>
+            </select>
+          </div>
+          <div class="field"  [class.invalid]="ad1.invalid && (ad1.dirty || ad1.touched)">
+            <input type="text"  [(ngModel)]="addressForm.addressLine1" name="ad1"
+                   placeholder="{{'checkout.address_line' | translate}} 1" required #ad1="ngModel">
+          </div>
+          <div class="field">
+            <input type="text"  [(ngModel)]="addressForm.addressLine2" name="ad2"
+                   placeholder="{{'checkout.address_line' | translate}} 2">
+          </div>
+          <div class="field"  [class.invalid]="city.invalid && (city.dirty || city.touched)">
+            <input type="text" [(ngModel)]="addressForm.city" name="city"
+                   placeholder="{{'checkout.city_town' | translate}}" required #city="ngModel">
+          </div>
+          <div class="field">
+            <input type="text" [(ngModel)]="addressForm.state" name="state"
+                   placeholder="{{'checkout.state' | translate}}">
+          </div>
+          <div class="field"  [class.invalid]="zip.invalid && (zip.dirty || zip.touched)">
+            <input type="text"  [(ngModel)]="addressForm.zipCode" name="zip"
+                   placeholder="{{'checkout.zip_code' | translate}}" required minlength="4" #zip="ngModel">
+          </div>
+          <div class="field">
+            <app-country-select [country]="addressForm.country" (update)="updateCountry($event, addressForm)"></app-country-select>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="coupons">
+        <label>{{'checkout.add_coupon' | translate}} :</label>
+        <input [disabled]="couponDiscount !== 0 || couponDesable" type="text" [(ngModel)]="couponName">
+        <button class="sox-btn fg-txt" (click)="applyCoupon()">{{'checkout.apply' | translate}}</button>
+      </div>
+
+    </div>
+
+    <div fxFlex>
+      <h3>{{'checkout.payments' | translate}}</h3>
+
+      <div class="summery">
+        <table>
+          <tr>
+            <td>{{'checkout.sox_cost' | translate}}: </td>
+            <td>{{total | currencyChange}}</td>
+          </tr>
+          <!--<tr>-->
+            <!--<td>{{'checkout.discount' | translate}}: </td>-->
+            <!--<td>{{(nonDiscountTotal - total) | currencyChange}}</td>-->
+          <!--</tr>-->
+          <tr *ngIf="couponDiscount !== 0">
+            <td>{{'checkout.coupon_discount' | translate}}: </td>
+            <td>{{couponDiscount | currencyChange}} {{couponPercentage !== 0 ? '( -' + couponPercentage + '% )': '' }}</td>
+          </tr>
+          <tr class="final">
+            <td>{{'checkout.total_cost' | translate}}: </td>
+            <td>{{(total  - couponDiscount)| currencyChange}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="field" style="text-align: center; margin-top: 20px;" *ngIf="!isAuth" [class.invalid]="email.invalid && (email.dirty || email.touched)">
+        <input type="text"  [(ngModel)]="nonAuthEmail" name="email" style="width: 200px"
+               placeholder="Email" required #email="ngModel">
+      </div>
+
+      <div class="select-area" style="margin-left: 55px">
+        <label class="rb-container" (click)="paypalInit()">Pay Pal
+          <input type="radio" name="radio2" [value]="1" [(ngModel)]="paymentMode">
+          <span class="checkmark"></span>
+        </label>
+        <label class="rb-container">{{'checkout.credit_cart' | translate}}
+          <input type="radio" name="radio2" [value]="2" [(ngModel)]="paymentMode">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="card" [style.display]="paymentMode === 2 ? 'block': 'none'">
+        <form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+          <div class="form-row">
+            <label for="card-info" class="field-name">{{'checkout.your_card_details' | translate}} :</label>
+            <div id="card-info" #cardInfo></div>
+            <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+          </div>
+          <br>
+          <label class="field-name">{{'checkout.your_billing_address' | translate}} :</label>
+          <div>
+            <button class="sox-btn" type="button"
+                    (click)="disableBA ? billingAddress = {} : billingAddress = selectedAddress || addressForm; disableBA = !disableBA"
+            >{{disableBA ? transService.instant('checkout.newOne') : transService.instant('checkout.Same')}}</button>
+          </div>
+          <div class="card-field">
+            <label for="add1" fxHide.xs>{{'checkout.address_line' | translate}} 1 :</label>
+            <input [readonly]="disableBA" type="text" id="add1" name="add1" placeholder="{{'checkout.address_line' | translate}} 1"
+                   [(ngModel)]="billingAddress['addressLine1']">
+          </div>
+          <div class="card-field">
+            <label for="add2" fxHide.xs>{{'checkout.address_line' | translate}} 2 :</label>
+            <input [readonly]="disableBA" type="text" id="add2"
+                   name="add2" placeholder="{{'checkout.address_line' | translate}} 2" [(ngModel)]="billingAddress['addressLine2']">
+          </div>
+          <div class="card-field">
+            <label for="city" fxHide.xs>{{'checkout.city_town' | translate}} :</label>
+            <input [readonly]="disableBA" type="text" id="city" name="city"
+                   [(ngModel)]="billingAddress['city']" placeholder="{{'checkout.city_town' | translate}}">
+          </div>
+          <div class="card-field">
+            <label for="state" fxHide.xs>{{'checkout.state' | translate}} :</label>
+            <input [readonly]="disableBA" type="text" id="state" name="state"
+                   [(ngModel)]="billingAddress['state']" placeholder="State">
+          </div>
+          <div class="card-field">
+            <label  fxHide.xs>{{'checkout.country' | translate}} :</label>
+            <app-country-select [disabled]="disableBA"
+                                [country]="billingAddress['country']"
+                                (update)="updateCountry($event, billingAddress)"></app-country-select>
+          </div>
+          <div class="pay-btn">
+            <button type="submit" [class.paying]="paying">{{'checkout.pay' | translate}} {{(total  - couponDiscount)| currencyChange}}</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="paypal" [style.display]="paymentMode === 1 && !addressModal ? 'block': 'none'">
+        <i class="fa fa-spinner" *ngIf="loading"></i>
+        <div id="paypal-button"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" *ngIf="addressModal" #modalBackground (click)="backgroundClose($event)">
+  <i class="material-icons close-btn" (click)="addressModal = false">close</i>
+  <div class="modal-content" >
+    <div class="header">
+      {{'checkout.select_address' | translate}}
+    </div>
+
+    <div class="address" *ngFor="let a of address" (click)="selectedAddress = a; addressModal = false;">
+      <div>{{a.title| titlecase}}. {{a.firstname}} {{a.lastname}}</div>
+      <div>{{a.addressLine1}}</div>
+      <div>{{a.addressLine2}}</div>
+      <div>{{a.city}}, {{a.state}}, {{a.zipCode}}</div>
+      <div>{{a.country}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="processing" *ngIf="paying">
+  <div class="spinner"></div>
+</div>

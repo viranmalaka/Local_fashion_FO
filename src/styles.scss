@@ -1,0 +1,230 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://use.fontawesome.com/releases/v5.0.12/css/all.css");
+@import "../node_modules/angular2-toaster/src/toaster";
+
+@import "assets/theme";
+
+@-webkit-keyframes num-popup {
+  0% {
+    -webkit-transform: scale(.5);
+            transform: scale(.5);
+  }
+  70% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes num-popup {
+  0% {
+    -webkit-transform: scale(.5);
+            transform: scale(.5);
+  }
+  70% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes shake {
+  10%, 90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+            transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+            transform: translate3d(4px, 0, 0);
+  }
+}
+@keyframes shake {
+  10%, 90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+            transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+            transform: translate3d(4px, 0, 0);
+  }
+}
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+* {
+  font-family: Helvetica, sans-serif;
+}
+/* Global Defaults */
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  // prevent zooming in dbl tap
+  touch-action: manipulation;
+}
+/* Headlines */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  font-family: Helvetica, sans-serif;
+  //font-family: Helvetica, serif;
+}
+/* Text Styles */
+p, th, td, li, dd, dt, ul, ol, blockquote, q, acronym, abbr, a, input, select, textarea {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, sans-serif;
+  //font: normal normal normal 1em/1.25 Helvetica, sans-serif;
+}
+input, select {
+  padding: 5px 2px;
+}
+input:required {
+  box-shadow:none!important;
+  border: 2px;
+}
+img {
+  border: none;
+}
+/* Tables */
+table {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+/* Forms */
+form {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+i {
+  cursor: pointer;
+}
+// common styles
+body {
+  font-family: Helvetica, sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+@media (max-width: 599px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 4px 7px 1px 7px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+button.sox-btn {
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  padding: 6px;
+  margin: 2px;
+}
+
+@media (min-width: 600px) {
+  .mbl-only {
+    display: none;
+  }
+}
+
+.white-color {
+  color: white;
+}
+
+
+#card-info {
+  border-radius: 0;
+  border-color: getVal('col1-d');
+}
+
+// customized toastr styles
+#toast-container > div > i {
+  display: none;
+}
+#toast-container > div {
+  padding: 15px;
+  opacity: .9!important;
+  color: getVal('txt');
+  &:hover {
+    opacity: 1!important;
+  }
+}
+.toast-warning {
+  background-color: getVal('col2-d');
+}

@@ -1,0 +1,42 @@
+//.h-1 {
+//  font-weight: bold;
+//  text-align: left;
+//}
+//.h-2 {
+//  font-weight: bold;
+//  text-align: end;
+//}
+//
+//.input-group {
+//  position: relative;
+//  margin-top: 15px;
+//  width: 225px;
+//  i {
+//    position: absolute;
+//    color: #3e3738;
+//    font-weight: bold;
+//    font-size: 20px;
+//    top: 4px;
+//    left: 10px;
+//  }
+//  input {
+//    padding-left: 15px;
+//    width: 230px;
+//  }
+//}
+//
+
+.hider {
+  position: absolute;
+  width: 247px;
+  height: 22px;
+  top: 100px;
+  left: 22px;
+  background: #f8f8f8;
+}
+
+@media (max-width: 600px) {
+  .hider {
+    width: 217px;
+  }
+}

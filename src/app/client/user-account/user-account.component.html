@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayout.xs="column" class="container">
+  <div fxFlex="200px" class="links" fxFlex.sm="155px" fxHide.xs>
+    <a class="link" routerLink="orders" routerLinkActive="active">{{'user_account.my_order' | translate}}</a>
+    <a class="link" routerLink="wishlist" routerLinkActive="active">{{'user_account.wish_list' | translate}}</a>
+    <a class="link" routerLink="personal" routerLinkActive="active">{{'user_account.personal_details' | translate}}</a>
+    <a class="link" routerLink="addresses" routerLinkActive="active">{{'user_account.my_address' | translate}}</a>
+    <a class="link" routerLink="rewards" routerLinkActive="active">{{'user_account.my_rewards' | translate}}</a>
+  </div>
+  <div fxLayout="row" fxHide.gt-xs class="mbl-nav">
+    <a fxFlex routerLink="orders" routerLinkActive="active"><i class="material-icons">shopping_basket</i></a>
+    <a fxFlex routerLink="wishlist" routerLinkActive="active"><i class="material-icons">favorite</i></a>
+    <a fxFlex routerLink="personal" routerLinkActive="active"><i class="material-icons">edit</i></a>
+    <a fxFlex routerLink="addresses" routerLinkActive="active"><i class="material-icons">edit_location</i></a>
+    <a fxFlex routerLink="rewards" routerLinkActive="active"><i class="material-icons">star</i></a>
+  </div>
+  <div fxFlex="auto" class="outlet">
+    <router-outlet></router-outlet>
+  </div>
+</div>

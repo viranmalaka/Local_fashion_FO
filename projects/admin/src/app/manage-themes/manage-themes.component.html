@@ -1,0 +1,19 @@
+<div fxLayout="row">
+  <div class="form" style="padding: 10px">
+    <form class="form" style="display: block;">
+      <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="theme.name">
+      <button class="btn btn-primary" style="margin: 2px" (click)="addTheme()" *ngIf="selected.length == 0">Add Theme</button>
+      <button class="btn btn-primary" style="margin: 2px" (click)="editTheme()" *ngIf="selected.length != 0">Edit Theme</button>
+      <button class="btn btn-danger" style="margin: 2px" (click)="deleteTheme()" *ngIf="selected.length != 0">Delete Theme</button>
+    </form>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <div class="table">
+    <ngx-datatable class="material"
+                   [rows]="rows" [columnMode]="'force'" [columns]="columns"
+                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10"
+                   [selected]="selected" [selectionType]="'single'" (select)="selectTheme($event)">
+    </ngx-datatable>
+  </div>
+</div>

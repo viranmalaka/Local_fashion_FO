@@ -1,0 +1,40 @@
+<div fxFlex="auto" fxLayout="column" style="height: 100%">
+  <div fxLayout="column" fxFlex="auto" class="list-container">
+
+    <div *ngFor="let t of themeList" class="theme-list">
+
+      <!--Theme Name-->
+      <div class="theme-name bg-2l" fxFlex *ngIf="t.item.length > 0">{{t.name}}</div>
+
+      <!--Repeative Items-->
+      <div fxFlex fxLayout="row" class="items" [class.cart-view]="cart">
+        <div *ngFor="let i of t.item" class="item" fxFlex="170px" fxFlex.sm="150px"
+             fxFlex.xs="80px" (click)="view(i)">
+
+          <img *ngIf="i.category === 'sox-1'" src="../../../assets/images/{{t.id}}/{{i.id}}_C_thumbnail.jpg"
+               alt="">
+
+          <img *ngIf="i.category === 'sox-3'" src="../../../assets/images/1/{{i.id}}_A_thumbnail.jpg"
+               alt="">
+
+          <img *ngIf="i.category === 'sox-6'" src="../../../assets/images/{{t.id}}/fullpack_thumbnail.jpg"
+               alt="">
+
+          <!--<span class="item-price bg-1d">-->
+            <!--{{i.price | currencyChange}}-->
+          <!--</span>-->
+
+          <i class="material-icons active-check fg-2d">check</i>
+          <i class="material-icons add-wish-list" (click)="addToWishList(i)"
+             [class.fg-2d]="userWishList[i.id]" [class.fg-txt]="!userWishList[i.id]"
+          >favorite</i>
+          <i class="material-icons view fg-txt" (click)="view(i)">zoom_in</i>
+          <p class="item-name">{{i.name}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-item-dialog #itemViewDialog></app-item-dialog>

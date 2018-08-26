@@ -1,0 +1,248 @@
+@import "../../../assets/theme";
+
+.home-page {
+  position: relative;
+  height: 100%;
+  .left-side {
+    height: 100%;
+    -webkit-animation: .8s ease-out 0s 1 slide-left;
+            animation: .8s ease-out 0s 1 slide-left;
+    position: absolute;
+    width: 50%;
+    .text {
+      position: absolute;
+      font-weight: bold;
+      //color: $act2-col;
+      text-align: center;
+      width: 100%;
+    }
+    .small {
+      font-size: 25px;
+    }
+    .large {
+      font-size: 60px;
+    }
+
+    .img {
+      right: 0;
+      position: absolute;
+      img {
+        height: 100px;
+      }
+    }
+
+    .desc {
+      position: absolute;
+      text-align: center;
+      //color: $txt-col;
+      font-weight: normal;
+      line-height: 36px;
+      font-size: 33px;
+      width: 100%;
+    }
+
+    .button-container {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      .btn-shop-now {
+        //background: $act2-col;
+        border: none;
+        //color: $txt-col;
+        font-weight: bold;
+        font-size: 30px;
+        margin-top: 20px;
+        padding: 5px 15px;
+
+        &:hover {
+          //color: $act2-col;
+          //background: $txt-col;
+        }
+      }
+    }
+  }
+
+  .right-side {
+    -webkit-animation: .8s ease-out 0s 1 slide-right;
+            animation: .8s ease-out 0s 1 slide-right;
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 50%;
+    background: url('../../../assets/images/landing_page_image.jpg') no-repeat left center;
+    background-size: 100vh;
+    .img {
+      //text-align: end;
+      position: absolute;
+      background: transparent;
+      top: 186px;
+      img {
+        height: 100px;
+      }
+    }
+  }
+}
+
+#buy {
+  top: calc(50% - 225px)
+}
+
+#socks {
+  top: calc(50% - 200px)
+}
+
+#and {
+  top: calc(50% - 133px)
+}
+
+#pairs {
+  top: calc(50% - 110px)
+}
+
+#img_l {
+  top: calc(50% - 40px)
+}
+
+#img_r {
+  top: calc(50% - 40px)
+}
+
+#start {
+  top: calc(50% + 45px)
+}
+
+#shop {
+  top: calc(50% + 110px)
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+
+// responsive
+// xs
+@media (max-width: 599px) {
+  .home-page {
+    .left-side {
+      .small {
+        font-size: 16px;
+      }
+      .large {
+        font-size: 25px;
+      }
+      .img {
+        img {
+          height: 100px;
+        }
+      }
+      .desc {
+        font-size: 20px;
+        line-height: 22px;
+      }
+      .button-container {
+        .btn-shop-now {
+          font-size: 17px;
+        }
+      }
+    }
+
+    .right-side {
+      .img {
+        img {
+          height: 100px;
+        }
+      }
+    }
+  }
+  #buy {
+    top: calc(50% - 165px)
+  }
+  #socks {
+    top: calc(50% - 145px)
+  }
+  #and {
+    top: calc(50% - 95px)
+  }
+  #pairs {
+    top: calc(50% - 75px)
+  }
+  #img_l {
+    top: calc(50% - 30px)
+  }
+  #img_r {
+    top: calc(50% - 30px)
+  }
+  #start {
+    top: calc(50% + 60px)
+  }
+  #shop {
+    top: calc(50% + 100px)
+  }
+}
+
+// sm
+@media (min-width: 600px) {
+
+}
+
+// md
+@media (min-width: 960px) {
+
+}
+
+
+//.theme-1 .home-page {
+//  .left-side {
+//    .text {
+//      color: $t-1-act2-col;
+//    }
+//    .button-container {
+//      .btn-shop-now {
+//        background: $t-1-act2-col;
+//        &:hover {
+//          color: $t-1-act2-col;
+//        }
+//      }
+//    }
+//  }
+//}
